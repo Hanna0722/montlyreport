@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>비드바이코리아 — 2026년 월간 보고서</title>
+<title>비드바이코리아 ? 2026년 월간 보고서</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
@@ -77,9 +77,18 @@ window.addEventListener('DOMContentLoaded', function() {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      hover: { mode: 'nearest', intersect: false },
+      onHover: (event, active) => {
+        event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+      },
+      elements: {
+        point: { hoverRadius: 10, hitRadius: 14, hoverBorderWidth: 4 }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
+          mode: 'nearest',
+          intersect: false,
           backgroundColor: '#fff',
           titleColor: '#1A1A2E',
           bodyColor: '#666680',
@@ -503,7 +512,7 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
   <div class="header-meta" id="headerMeta">
     <strong>2026년 7월 월간 매출 보고서</strong>
-    2026.07.01 — 2026.07.31 기준
+    2026.07.01 ? 2026.07.31 기준
   </div>
 </header>
 <div class="page">
@@ -514,7 +523,7 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
   <div class="tab-content" id="tab-may">
   <!-- ── KPI ── -->
-  <p class="section-label" style="margin-top:4px;">핵심 지표 — 5월 실적</p>
+  <p class="section-label" style="margin-top:4px;">핵심 지표 ? 5월 실적</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;min-width:0;">
     <div class="kpi-card" style="background-color:#ffffff;">
       <div class="kpi-label">수수료 총액</div>
@@ -635,32 +644,32 @@ window.addEventListener('DOMContentLoaded', function() {
       <tbody>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-          <td>₩57,858,639</td><td class="up">+9.83%</td><td class="up">+10.12%</td>
+          <td>\57,858,639</td><td class="up">+9.83%</td><td class="up">+10.12%</td>
           <td>5,800</td><td class="up">+9.99%</td><td class="up">+15.03%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-          <td>₩12,883,963</td><td class="down">-0.10%</td><td class="down">-3.96%</td>
+          <td>\12,883,963</td><td class="down">-0.10%</td><td class="down">-3.96%</td>
           <td>1,346</td><td class="up">+2.44%</td><td class="down">-8.44%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-          <td>₩8,709,125</td><td class="up">+9.16%</td><td class="up">+51.74%</td>
+          <td>\8,709,125</td><td class="up">+9.16%</td><td class="up">+51.74%</td>
           <td>426</td><td class="up">+7.30%</td><td class="down">-15.81%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-          <td>₩374,035</td><td class="down">-38.67%</td><td class="up">+14.84%</td>
+          <td>\374,035</td><td class="down">-38.67%</td><td class="up">+14.84%</td>
           <td>45</td><td class="up">+104.55%</td><td class="up">+104.55%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-          <td>₩2,431,884</td><td class="up">+11.76%</td><td class="up">+1.69%</td>
+          <td>\2,431,884</td><td class="up">+11.76%</td><td class="up">+1.69%</td>
           <td>111</td><td class="down">-15.27%</td><td class="down">-11.20%</td>
         </tr>
         <tr>
           <td>합계</td>
-          <td>₩82,257,646</td><td class="up">+7.75%</td><td class="down">-3.63%</td>
+          <td>\82,257,646</td><td class="up">+7.75%</td><td class="down">-3.63%</td>
           <td>7,728</td><td class="up">+8.28%</td><td class="up">+7.86%</td>
         </tr>
       </tbody>
@@ -690,33 +699,33 @@ window.addEventListener('DOMContentLoaded', function() {
         <tbody>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-            <td>₩894,751,903</td><td class="up">+16.04%</td><td class="up">+13.34%</td>
-            <td>¥16,031</td><td class="up">+6.02%</td><td class="up">+3.28%</td>
+            <td>\894,751,903</td><td class="up">+16.04%</td><td class="up">+13.34%</td>
+            <td>￥16,031</td><td class="up">+6.02%</td><td class="up">+3.28%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-            <td>₩160,048,917</td><td class="down">-3.32%</td><td class="up">+0.71%</td>
-            <td>¥12,327</td><td class="down">-5.12%</td><td class="up">+14.54%</td>
+            <td>\160,048,917</td><td class="down">-3.32%</td><td class="up">+0.71%</td>
+            <td>￥12,327</td><td class="down">-5.12%</td><td class="up">+14.54%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-            <td>₩119,417,174</td><td class="up">+8.08%</td><td class="up">+51.53%</td>
+            <td>\119,417,174</td><td class="up">+8.08%</td><td class="up">+51.53%</td>
             <td>$175.92</td><td class="flat">-0.01%</td><td class="up">+44.82%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-            <td>₩4,541,427</td><td class="down">-48.57%</td><td class="up">+47.68%</td>
+            <td>\4,541,427</td><td class="down">-48.57%</td><td class="up">+47.68%</td>
             <td>$138.18</td><td class="down">-45.89%</td><td class="up">+40.37%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-            <td>₩17,689,529</td><td class="up">+16.58%</td><td class="down">-23.82%</td>
-            <td>£55.50</td><td class="up">+4.67%</td><td class="down">-36.36%</td>
+            <td>\17,689,529</td><td class="up">+16.58%</td><td class="down">-23.82%</td>
+            <td>￡55.50</td><td class="up">+4.67%</td><td class="down">-36.36%</td>
           </tr>
           <tr>
             <td>합계</td>
-            <td>₩1,196,448,949</td><td class="up">+11.70%</td><td class="up">+13.57%</td>
-            <td>—</td><td>—</td><td>—</td>
+            <td>\1,196,448,949</td><td class="up">+11.70%</td><td class="up">+13.57%</td>
+            <td>?</td><td>?</td><td>?</td>
           </tr>
         </tbody>
       </table>
@@ -846,7 +855,7 @@ window.addEventListener('DOMContentLoaded', function() {
         <div class="insight-content">
           <div class="insight-title">일본구매 건수·수수료 전년 역성장 </div>
           <div class="insight-body">일본구매 건수 전년비 -8.44%, 수수료 -3.96%
-            <br>평균 구매가 ¥12,379로 전월 대비 -5.12% 하락
+            <br>평균 구매가 ￥12,379로 전월 대비 -5.12% 하락
             <br>(단, 전년 대비는 +14.54%로 단가 자체는 회복 중). </div>
         </div>
       </div>
@@ -889,7 +898,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <!-- /tab-may -->
   <div class="tab-content" id="tab-jun">
     <!-- ── KPI ── -->
-  <p class="section-label" style="margin-top:4px;">핵심 지표 — 6월 실적</p>
+  <p class="section-label" style="margin-top:4px;">핵심 지표 ? 6월 실적</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;min-width:0;">
     <div class="kpi-card" style="background-color:#ffffff;">
       <div class="kpi-label">수수료 총액</div>
@@ -1026,32 +1035,32 @@ window.addEventListener('DOMContentLoaded', function() {
       <tbody>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-          <td>₩50,313,871</td><td class="down">-12.34%</td><td class="up">+1.00%</td>
+          <td>\50,313,871</td><td class="down">-12.34%</td><td class="up">+1.00%</td>
           <td>5,200</td><td class="down">-10.16%</td><td class="up">+7.71%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-          <td>₩11,329,453</td><td class="down">-10.14%</td><td class="down">-12.93%</td>
+          <td>\11,329,453</td><td class="down">-10.14%</td><td class="down">-12.93%</td>
           <td>1,261</td><td class="down">-4.61%</td><td class="down">-13.81%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-          <td>₩8,334,580</td><td class="down">-3.33%</td><td class="up">+23.36%</td>
+          <td>\8,334,580</td><td class="down">-3.33%</td><td class="up">+23.36%</td>
           <td>396</td><td class="down">-5.71%</td><td class="down">-19.84%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-          <td>₩1,158,596</td><td class="up">+209.76%</td><td class="up">+162.84%</td>
+          <td>\1,158,596</td><td class="up">+209.76%</td><td class="up">+162.84%</td>
           <td>21</td><td class="down">-53.33%</td><td class="down">-22.22%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-          <td>₩2,051,363</td><td class="down">-15.46%</td><td class="up">+7.68%</td>
+          <td>\2,051,363</td><td class="down">-15.46%</td><td class="up">+7.68%</td>
           <td>112</td><td class="up">+0.90%</td><td class="down">-21.13%</td>
         </tr>
         <tr>
           <td>합계</td>
-          <td>₩73,187,863</td><td class="down">-10.12%</td><td class="up" style="font-size : 18px;">+1.75%</td>
+          <td>\73,187,863</td><td class="down">-10.12%</td><td class="up" style="font-size : 18px;">+1.75%</td>
           <td>6,990</td><td class="down">-9.06%</td><td class="up" style="font-size : 18px;">+0.60%</td>
         </tr>
       </tbody>
@@ -1081,33 +1090,33 @@ window.addEventListener('DOMContentLoaded', function() {
         <tbody>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-            <td>₩737,940,827</td><td class="down">-17.19%</td><td class="down">-0.24%</td>
-            <td>¥14,538</td><td class="down">-9.31%</td><td class="down">-6.66%</td>
+            <td>\737,940,827</td><td class="down">-17.19%</td><td class="down">-0.24%</td>
+            <td>￥14,538</td><td class="down">-9.31%</td><td class="down">-6.66%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-            <td>₩153,064,677</td><td class="down">-2.19%</td><td class="up">+8.00%</td>
-            <td>¥12,434</td><td class="up">+0.87%</td><td class="up">+14.05%</td>
+            <td>\153,064,677</td><td class="down">-2.19%</td><td class="up">+8.00%</td>
+            <td>￥12,434</td><td class="up">+0.87%</td><td class="up">+14.05%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-            <td>₩115,069,519</td><td class="down">-3.36%</td><td class="up">+21.99%</td>
+            <td>\115,069,519</td><td class="down">-3.36%</td><td class="up">+21.99%</td>
             <td>$175.58</td><td class="flat">-0.19%</td><td class="up">+46.17%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-            <td>₩20,749,230</td><td class="up">+356.89%</td><td class="up">+287.02%</td>
+            <td>\20,749,230</td><td class="up">+356.89%</td><td class="up">+287.02%</td>
             <td>$622.55</td><td class="up">+350.54%</td><td class="up">+40.37%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-            <td>₩17,583,304</td><td class="down">-0.75%</td><td class="up">+38.68%</td>
-            <td>£71.86</td><td class="up">+29.48%</td><td class="down">-35.97%</td>
+            <td>\17,583,304</td><td class="down">-0.75%</td><td class="up">+38.68%</td>
+            <td>￡71.86</td><td class="up">+29.48%</td><td class="down">-35.97%</td>
           </tr>
           <tr>
             <td>합계</td>
-            <td>₩1,044,407,556</td><td class="down">-12.16%</td><td class="up"style="font-size : 18px;">+5.09%</td>
-            <td>—</td><td>—</td><td>—</td>
+            <td>\1,044,407,556</td><td class="down">-12.16%</td><td class="up"style="font-size : 18px;">+5.09%</td>
+            <td>?</td><td>?</td><td>?</td>
           </tr>
         </tbody>
       </table>
@@ -1261,7 +1270,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   <div class="tab-content active" id="tab-jul">
     <!-- ── KPI ── -->
-  <p class="section-label" style="margin-top:4px;">핵심 지표 — 7월 실적</p>
+  <p class="section-label" style="margin-top:4px;">핵심 지표 ? 7월 실적</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;min-width:0;">
     <div class="kpi-card" style="background-color:#ffffff;">
       <div class="kpi-label">수수료 총액</div>
@@ -1405,32 +1414,32 @@ window.addEventListener('DOMContentLoaded', function() {
       <tbody>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-          <td>₩52,051,977</td><td class="up">+3.45%</td><td class="down">-0.65%</td>
+          <td>\52,051,977</td><td class="up">+3.45%</td><td class="down">-0.65%</td>
           <td>5,411</td><td class="up">+4.06%</td><td class="up">+7.15%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-          <td>₩11,169,804</td><td class="down">-1.41%</td><td class="up">+1.36%</td>
+          <td>\11,169,804</td><td class="down">-1.41%</td><td class="up">+1.36%</td>
           <td>1,254</td><td class="down">-0.56%</td><td class="down">-5.57%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-          <td>₩7,117,606</td><td class="down">-14.60%</td><td class="down">-15.22%</td>
+          <td>\7,117,606</td><td class="down">-14.60%</td><td class="down">-15.22%</td>
           <td>364</td><td class="down">-8.08%</td><td class="down">-32.59%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-          <td>₩817,945</td><td class="down">-29.40%</td><td class="down">-36.02%</td>
+          <td>\817,945</td><td class="down">-29.40%</td><td class="down">-36.02%</td>
           <td>28</td><td class="up">+33.33%</td><td class="down">-12.50%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-          <td>₩1,465,373</td><td class="down">-28.57%</td><td class="down">-33.57%</td>
+          <td>\1,465,373</td><td class="down">-28.57%</td><td class="down">-33.57%</td>
           <td>79</td><td class="down">-29.46%</td><td class="down">-26.17%</td>
         </tr>
         <tr>
           <td>합계</td>
-          <td>₩72,622,706</td><td class="down">-0.77%</td><td class="down" style="font-size : 18px;">-3.54%</td>
+          <td>\72,622,706</td><td class="down">-0.77%</td><td class="down" style="font-size : 18px;">-3.54%</td>
           <td>7,136</td><td class="up">+2.09%</td><td class="up" style="font-size : 18px;">+1.12%</td>
         </tr>
       </tbody>
@@ -1461,33 +1470,33 @@ window.addEventListener('DOMContentLoaded', function() {
         <tbody>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-            <td>₩760,999,513</td><td class="up">+3.12%</td><td class="down">-0.17%</td>
-            <td>¥14,777</td><td class="up">+1.64%</td><td class="down">-4.66%</td>
+            <td>\760,999,513</td><td class="up">+3.12%</td><td class="down">-0.17%</td>
+            <td>￥14,777</td><td class="up">+1.64%</td><td class="down">-4.66%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-            <td>₩149,876,133</td><td class="down">-2.08%</td><td class="up">+20.85%</td>
-            <td>¥12,583</td><td class="up">+1.20%</td><td class="up">+31.26%</td>
+            <td>\149,876,133</td><td class="down">-2.08%</td><td class="up">+20.85%</td>
+            <td>￥12,583</td><td class="up">+1.20%</td><td class="up">+31.26%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-            <td>₩101,513,852</td><td class="down">-11.78%</td><td class="up">+8.41%</td>
+            <td>\101,513,852</td><td class="down">-11.78%</td><td class="up">+8.41%</td>
             <td>$176.75</td><td class="up">+0.67%</td><td class="up">+59.69%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-            <td>₩11,441,405</td><td class="down">-44.86%</td><td class="down">-44.08%</td>
+            <td>\11,441,405</td><td class="down">-44.86%</td><td class="down">-44.08%</td>
             <td>$260.78</td><td class="down">-58.11%</td><td class="down">-41.08%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-            <td>₩12,844,831</td><td class="down">-26.95%</td><td class="down">-47.01%</td>
-            <td>£79.11</td><td class="up">+10.09%</td><td class="down">-26.78%</td>
+            <td>\12,844,831</td><td class="down">-26.95%</td><td class="down">-47.01%</td>
+            <td>￡79.11</td><td class="up">+10.09%</td><td class="down">-26.78%</td>
           </tr>
           <tr>
             <td>합계</td>
-            <td>₩1,036,675,734</td><td class="down">-0.74%</td><td class="up" style="font-size : 18px;">+1.17%</td>
-            <td>—</td><td>—</td><td>—</td>
+            <td>\1,036,675,734</td><td class="down">-0.74%</td><td class="up" style="font-size : 18px;">+1.17%</td>
+            <td>?</td><td>?</td><td>?</td>
           </tr>
         </tbody>
       </table>
@@ -1664,11 +1673,11 @@ const gridColor = 'rgba(0,0,0,0.05)';
 const textColor = '#999BAA';
 function formatFeeTooltipLabel(ctx) {
   const raw = Number(ctx.raw || 0);
-  return '  ' + ctx.dataset.label + ': ₩' + raw.toLocaleString() + ' (' + Math.round(raw / 10000).toLocaleString() + '만원)';
+  return '  ' + ctx.dataset.label + ': \u20a9' + raw.toLocaleString() + ' (' + Math.round(raw / 10000).toLocaleString() + '만원)';
 }
 function formatFeeTooltipFooter(items) {
   const total = items.reduce((sum, item) => sum + Number(item.raw || 0), 0);
-  return '합계: ₩' + total.toLocaleString() + ' (' + Math.round(total / 10000).toLocaleString() + '만원)';
+  return '합계: \u20a9' + total.toLocaleString() + ' (' + Math.round(total / 10000).toLocaleString() + '만원)';
 }
 
 // TREND BAR
@@ -1687,6 +1696,13 @@ new Chart(document.getElementById('trendChart'), {
   options: {
     responsive: true, maintainAspectRatio: false,
     interaction: { mode: 'index', intersect: false },
+    hover: { mode: 'nearest', intersect: false },
+    onHover: (event, active) => {
+      event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+    },
+    elements: {
+      bar: { hoverBorderColor: '#1A1A2E', hoverBorderWidth: 2 }
+    },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -1705,7 +1721,7 @@ new Chart(document.getElementById('trendChart'), {
     },
     scales: {
       x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-      y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+      y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '\u20a9' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
     }
   }
 });
@@ -1793,6 +1809,13 @@ new Chart(document.getElementById('orderPieChart'), {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      hover: { mode: 'nearest', intersect: false },
+      onHover: (event, active) => {
+        event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+      },
+      elements: {
+        point: { hoverRadius: 8, hitRadius: 10, hoverBorderWidth: 3 }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -1933,9 +1956,18 @@ function initJunCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 10, hitRadius: 14, hoverBorderWidth: 4 }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
+            mode: 'nearest',
+            intersect: false,
             backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680',
             borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
             callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + ctx.raw.toLocaleString() + '건' }
@@ -1971,6 +2003,13 @@ function initJunCharts() {
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      hover: { mode: 'nearest', intersect: false },
+      onHover: (event, active) => {
+        event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+      },
+      elements: {
+        bar: { hoverBorderColor: '#1A1A2E', hoverBorderWidth: 2 }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -1989,7 +2028,7 @@ function initJunCharts() {
       },
       scales: {
         x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '\u20a9' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
       }
     }
   });
@@ -2040,6 +2079,13 @@ function initJunCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 8, hitRadius: 10, hoverBorderWidth: 3 }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -2071,6 +2117,13 @@ function initJunCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 9, hitRadius: 10, hoverBorderWidth: 3 }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -2114,9 +2167,18 @@ function initJulCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 10, hitRadius: 14, hoverBorderWidth: 4 }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
+            mode: 'nearest',
+            intersect: false,
             backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680',
             borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
             callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + ctx.raw.toLocaleString() + '건' }
@@ -2153,6 +2215,13 @@ function initJulCharts() {
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
+      hover: { mode: 'nearest', intersect: false },
+      onHover: (event, active) => {
+        event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+      },
+      elements: {
+        bar: { hoverBorderColor: '#1A1A2E', hoverBorderWidth: 2 }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -2171,7 +2240,7 @@ function initJulCharts() {
       },
       scales: {
         x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '\u20a9' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
       }
     }
   });
@@ -2224,6 +2293,13 @@ function initJulCharts() {
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 8, hitRadius: 10, hoverBorderWidth: 3 }
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -2285,14 +2361,14 @@ function switchMonthTab(month) {
   var meta = document.getElementById('headerMeta');
   var foot = document.getElementById('reportFooter');
   if (month === 'may') {
-    meta.innerHTML = '<strong>2026년 5월 월간 매출 보고서</strong>2026.05.01 — 2026.05.31 기준';
+    meta.innerHTML = '<strong>2026년 5월 월간 매출 보고서</strong>2026.05.01 ? 2026.05.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 5월 31일 기준';
   } else if (month === 'jun') {
-    meta.innerHTML = '<strong>2026년 6월 월간 매출 보고서</strong>2026.06.01 — 2026.06.30 기준';
+    meta.innerHTML = '<strong>2026년 6월 월간 매출 보고서</strong>2026.06.01 ? 2026.06.30 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 6월 30일 기준';
     initJunCharts();
   } else {
-    meta.innerHTML = '<strong>2026년 7월 월간 매출 보고서</strong>2026.07.01 — 2026.07.31 기준';
+    meta.innerHTML = '<strong>2026년 7월 월간 매출 보고서</strong>2026.07.01 ? 2026.07.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 7월 31일 기준';
     initJulCharts();
   }
@@ -2302,3 +2378,4 @@ window.addEventListener('DOMContentLoaded', initJulCharts);
 </script>
 </body>
 </html>
+
