@@ -413,6 +413,7 @@ window.addEventListener('DOMContentLoaded', function() {
   .icon-warn { background: var(--warn-bg); }
   .insight-content { flex: 1; }
   .insight-title { font-size: 12.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .insight-body + .insight-title { margin-top: 14px; }
   .insight-body { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
   @media (max-width: 760px) {
     .insight-grid,
@@ -541,6 +542,7 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="kpi-card purple" style="background-color:#ffffff;">
       <div class="kpi-label">평균 수수료율</div>
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">(해당 월 수수료 총액 ÷ 물품가 총액)</div>
       <div class="kpi-value">6.88%</div>
       <span class="kpi-badge badge-flat">전월 7.13%</span>
     </div>
@@ -589,17 +591,21 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~5월)</div>
-      <div class="legend-row">
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~5월, 단위: 만원)</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th></tr></thead>
+          <tbody>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td></tr>
+          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="chart-wrap" style="height:180px">
-        <canvas id="trendChart"></canvas>
-      </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -913,6 +919,7 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="kpi-card purple" style="background-color:#ffffff;">
       <div class="kpi-label">평균 수수료율</div>
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">(해당 월 수수료 총액 ÷ 물품가 총액)</div>
       <div class="kpi-value">7.01%</div>
       <span class="kpi-badge badge-flat">전월은 6.88%</span>
     </div>
@@ -961,17 +968,21 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~6월)</div>
-      <div class="legend-row">
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~6월, 단위: 만원)</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th></tr></thead>
+          <tbody>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td><td>5,031</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td><td>1,133</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td><td>833</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td><td>116</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td><td>205</td></tr>
+          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td><td>7,318</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="chart-wrap" style="height:180px">
-        <canvas id="trendChartJun"></canvas>
-      </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -1282,6 +1293,7 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="kpi-card purple" style="background-color:#ffffff;">
       <div class="kpi-label">평균 수수료율</div>
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">(해당 월 수수료 총액 ÷ 물품가 총액)</div>
       <div class="kpi-value">7.01%</div>
       <span class="kpi-badge badge-flat">전월과 동일 7.01%</span>
     </div>
@@ -1334,17 +1346,21 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~7월)</div>
-      <div class="legend-row">
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
-        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~7월, 단위: 만원)</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th><th>7월</th></tr></thead>
+          <tbody>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td><td>5,031</td><td>5,205</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td><td>1,133</td><td>1,117</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td><td>833</td><td>712</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td><td>116</td><td>82</td></tr>
+          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td><td>205</td><td>147</td></tr>
+          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td><td>7,318</td><td>7,263</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="chart-wrap" style="height:180px">
-        <canvas id="trendChartJul"></canvas>
-      </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
     </div>
 
     <!-- MoM LINE -->
@@ -1625,11 +1641,10 @@ window.addEventListener('DOMContentLoaded', function() {
           <div class="insight-body">일본경매를 제외한 일본구매·미국경매·미국구매·영국경매 4개 채널 모두 전월대비 수수료가 하락하면서
             <br>일본경매 비중이 68.7%→71.7%로 확대. 전체 수수료가 -0.77% 감소한 것에 비해 채널 쏠림은 오히려 심화되는 모습
             <br><br>평균 수수료율은 7.01%로 전월과 동일 수준을 유지해, 채널 구성 변화에도 전체 수익성 자체는 안정적으로 방어됨</div>
+          <div class="insight-title">미국구매, 주문은 늘었지만 수수료·물품가는 역행</div>
+          <div class="insight-body">주문건수는 21건→28건(+33.33%)으로 증가했으나 수수료는 -29.40%, 물품가는 -44.86%로 감소
+            <br>표본이 월 20~30건 수준으로 적어 단가가 낮은 소액 거래가 늘며 나타난 결과로 추정되며, 큰 의미 부여보다는 추세 확인이 필요한 구간</div>
         </div>
-<br>
-        <div class="insight-title">미국구매, 주문은 늘었지만 수수료·물품가는 역행</div>
-        <div class="insight-body">주문건수는 21건→28건(+33.33%)으로 증가했으나 수수료는 -29.40%, 물품가는 -44.86%로 감소
-          <br>표본이 월 20~30건 수준으로 적어 단가가 낮은 소액 거래가 늘며 나타난 결과로 추정되며, 큰 의미 부여보다는 추세 확인이 필요한 구간</div>
       </div>
     </div>
   </div>
@@ -1650,31 +1665,6 @@ const usB = [552404,889141,622716,609845,374035];
 const uk  = [2454043,2327434,2261370,2176020,2431884];
 const gridColor = 'rgba(0,0,0,0.05)';
 const textColor = '#999BAA';
-// TREND BAR
-new Chart(document.getElementById('trendChart'), {
-  type: 'bar',
-  data: {
-    labels: months,
-    datasets: [
-      { label:'일본경매', data:jpA, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
-      { label:'일본구매', data:jpB, backgroundColor:'#ED7D31', stack:'s' },
-      { label:'미국경매', data:usA, backgroundColor:'#FFC000', stack:'s' },
-      { label:'미국구매', data:usB, backgroundColor:'#70AD47', stack:'s' },
-      { label:'영국경매', data:uk,  backgroundColor:'#5B9BD5', stack:'s' }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ₩' + Math.round(ctx.raw/10000).toLocaleString() + '만' } }
-    },
-    scales: {
-      x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-      y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
-    }
-  }
-});
 // DONUT 수수료
 new Chart(document.getElementById('pieChart'), {
   type: 'doughnut',
@@ -1919,32 +1909,7 @@ function initJunCharts() {
   var usAJ = [7025315,6558848,9513260,7978543,8709125,8334580];
   var usBJ = [552404,889141,622716,609845,374035,1158596];
   var ukJ  = [2454043,2327434,2261370,2176020,2431884,2051363];
-  // TREND BAR
-  new Chart(document.getElementById('trendChartJun'), {
-    type: 'bar',
-    data: {
-      labels: monthsJun,
-      datasets: [
-        { label:'일본경매', data:jpAJ, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
-        { label:'일본구매', data:jpBJ, backgroundColor:'#ED7D31', stack:'s' },
-        { label:'미국경매', data:usAJ, backgroundColor:'#FFC000', stack:'s' },
-        { label:'미국구매', data:usBJ, backgroundColor:'#70AD47', stack:'s' },
-        { label:'영국경매', data:ukJ,  backgroundColor:'#5B9BD5', stack:'s' }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ₩' + Math.round(ctx.raw/10000).toLocaleString() + '만' } }
-      },
-      scales: {
-        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
-      }
-    }
-  });
-  // DONUT 수수료
+    // DONUT 수수료
   new Chart(document.getElementById('pieChartJun'), {
     type: 'doughnut',
     data: {
@@ -2087,33 +2052,7 @@ function initJulCharts() {
   var usBJl = [552404,889141,622716,609845,374035,1158596,817945];
   var ukJl  = [2454043,2327434,2261370,2176020,2431884,2051363,1465373];
 
-  // TREND BAR
-  new Chart(document.getElementById('trendChartJul'), {
-    type: 'bar',
-    data: {
-      labels: monthsJul,
-      datasets: [
-        { label:'일본경매', data:jpAJl, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
-        { label:'일본구매', data:jpBJl, backgroundColor:'#ED7D31', stack:'s' },
-        { label:'미국경매', data:usAJl, backgroundColor:'#FFC000', stack:'s' },
-        { label:'미국구매', data:usBJl, backgroundColor:'#70AD47', stack:'s' },
-        { label:'영국경매', data:ukJl,  backgroundColor:'#5B9BD5', stack:'s' }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ₩' + Math.round(ctx.raw/10000).toLocaleString() + '만' } }
-      },
-      scales: {
-        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
-        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
-      }
-    }
-  });
-
-  // DONUT 수수료
+    // DONUT 수수료
   new Chart(document.getElementById('pieChartJul'), {
     type: 'doughnut',
     data: {
