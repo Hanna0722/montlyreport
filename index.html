@@ -512,7 +512,7 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
   <div class="header-meta" id="headerMeta">
     <strong>2026년 7월 월간 매출 보고서</strong>
-    2026.07.01 ? 2026.07.31 기준
+    2026.07.01 ~ 2026.07.31 기준
   </div>
 </header>
 <div class="page">
@@ -2361,14 +2361,14 @@ function switchMonthTab(month) {
   var meta = document.getElementById('headerMeta');
   var foot = document.getElementById('reportFooter');
   if (month === 'may') {
-    meta.innerHTML = '<strong>2026년 5월 월간 매출 보고서</strong>2026.05.01 ? 2026.05.31 기준';
+    meta.innerHTML = '<strong>2026년 5월 월간 매출 보고서</strong>2026.05.01 ~ 2026.05.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 5월 31일 기준';
   } else if (month === 'jun') {
-    meta.innerHTML = '<strong>2026년 6월 월간 매출 보고서</strong>2026.06.01 ? 2026.06.30 기준';
+    meta.innerHTML = '<strong>2026년 6월 월간 매출 보고서</strong>2026.06.01 ~ 2026.06.30 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 6월 30일 기준';
     initJunCharts();
   } else {
-    meta.innerHTML = '<strong>2026년 7월 월간 매출 보고서</strong>2026.07.01 ? 2026.07.31 기준';
+    meta.innerHTML = '<strong>2026년 7월 월간 매출 보고서</strong>2026.07.01 ~ 2026.07.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 7월 31일 기준';
     initJulCharts();
   }
@@ -2378,4 +2378,3 @@ window.addEventListener('DOMContentLoaded', initJulCharts);
 </script>
 </body>
 </html>
-
