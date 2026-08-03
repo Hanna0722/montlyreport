@@ -130,7 +130,7 @@ window.addEventListener('DOMContentLoaded', function() {
     --ch-jpB: #ED7D31;
     --ch-usA: #FFC000;
     --ch-usB: #70AD47;
-    --ch-uk: #5B9BD5;
+    --ch-uk: #C43D4B;
   }
   body {
     font-family: 'Noto Sans KR', sans-serif;
@@ -591,21 +591,17 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~5월, 단위: 만원)</div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th></tr></thead>
-          <tbody>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td></tr>
-          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td></tr>
-          </tbody>
-        </table>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~5월)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
+      <div class="chart-wrap" style="height:180px">
+        <canvas id="trendChart"></canvas>
+      </div>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -695,17 +691,17 @@ window.addEventListener('DOMContentLoaded', function() {
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
             <td>₩894,751,903</td><td class="up">+16.04%</td><td class="up">+13.34%</td>
-            <td>¥16,069</td><td class="up">+6.02%</td><td class="up">+3.28%</td>
+            <td>¥16,031</td><td class="up">+6.02%</td><td class="up">+3.28%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
             <td>₩160,048,917</td><td class="down">-3.32%</td><td class="up">+0.71%</td>
-            <td>¥12,379</td><td class="down">-5.12%</td><td class="up">+14.54%</td>
+            <td>¥12,327</td><td class="down">-5.12%</td><td class="up">+14.54%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
             <td>₩119,417,174</td><td class="up">+8.08%</td><td class="up">+51.53%</td>
-            <td>$174.29</td><td class="flat">-0.01%</td><td class="up">+44.82%</td>
+            <td>$175.92</td><td class="flat">-0.01%</td><td class="up">+44.82%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
@@ -715,7 +711,7 @@ window.addEventListener('DOMContentLoaded', function() {
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
             <td>₩17,689,529</td><td class="up">+16.58%</td><td class="down">-23.82%</td>
-            <td>£55.16</td><td class="up">+4.67%</td><td class="down">-36.36%</td>
+            <td>£55.50</td><td class="up">+4.67%</td><td class="down">-36.36%</td>
           </tr>
           <tr>
             <td>합계</td>
@@ -725,6 +721,7 @@ window.addEventListener('DOMContentLoaded', function() {
         </tbody>
       </table>
     </div>
+    <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 평균 물품가는 최신 데이터로 수정 완료. 전월대비·전년대비 %는 4월/작년 동월 기준값 확인 전이라 기존 수치 유지 (필요시 데이터 주시면 재계산)</p>
   </div>
   <!-- ── 가입자 섹션 ── -->
   <p class="section-label" style="margin-top:8px;">신규 가입자 · 가입월 거래</p>
@@ -775,6 +772,7 @@ window.addEventListener('DOMContentLoaded', function() {
           <div style="font-size:12px;font-weight:600;color:var(--up);">▲110</div>
         </div>
       </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;text-align:right;">* 가입월 거래 건수의 월별 증감폭</p>
     </div>
   </div>
   <hr class="divider">
@@ -968,21 +966,17 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~6월, 단위: 만원)</div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th></tr></thead>
-          <tbody>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td><td>5,031</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td><td>1,133</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td><td>833</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td><td>116</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td><td>205</td></tr>
-          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td><td>7,318</td></tr>
-          </tbody>
-        </table>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~6월)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
+      <div class="chart-wrap" style="height:180px">
+        <canvas id="trendChartJun"></canvas>
+      </div>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -1093,22 +1087,22 @@ window.addEventListener('DOMContentLoaded', function() {
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
             <td>₩153,064,677</td><td class="down">-2.19%</td><td class="up">+8.00%</td>
-            <td>¥12,327</td><td class="down">-5.52%</td><td class="up">+14.05%</td>
+            <td>¥12,434</td><td class="up">+0.87%</td><td class="up">+14.05%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
             <td>₩115,069,519</td><td class="down">-3.36%</td><td class="up">+21.99%</td>
-            <td>$175.92</td><td class="up">+0.92%</td><td class="up">+46.17%</td>
+            <td>$175.58</td><td class="flat">-0.19%</td><td class="up">+46.17%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
             <td>₩20,749,230</td><td class="up">+356.89%</td><td class="up">+287.02%</td>
-            <td>$138.18</td><td class="down">-45.89%</td><td class="up">+40.37%</td>
+            <td>$622.55</td><td class="up">+350.54%</td><td class="up">+40.37%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
             <td>₩17,583,304</td><td class="down">-0.75%</td><td class="up">+38.68%</td>
-            <td>£55.50</td><td class="up">+5.31%</td><td class="down">-35.97%</td>
+            <td>£71.86</td><td class="up">+29.48%</td><td class="down">-35.97%</td>
           </tr>
           <tr>
             <td>합계</td>
@@ -1118,6 +1112,7 @@ window.addEventListener('DOMContentLoaded', function() {
         </tbody>
       </table>
     </div>
+    <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 평균 물품가는 최신 데이터로 수정, 전월대비(%)는 새 5월 기준으로 재계산 완료. 전년대비(%)는 작년 동월 기준값 확인 전이라 기존 수치 유지 (필요시 데이터 주시면 재계산)</p>
   </div>
   <!-- ── 가입자 섹션 ── -->
   <p class="section-label" style="margin-top:8px;">신규 가입자 · 가입월 거래</p>
@@ -1174,6 +1169,7 @@ window.addEventListener('DOMContentLoaded', function() {
           <div style="font-size:12px;font-weight:600;color:var(--down);">▼123</div>
         </div>
       </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;text-align:right;">* 가입월 거래 건수의 월별 증감폭</p>
     </div>
   </div>
   <hr class="divider">
@@ -1346,21 +1342,17 @@ window.addEventListener('DOMContentLoaded', function() {
   <div class="grid-2">
     <!-- TREND BAR -->
     <div class="card">
-      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~7월, 단위: 만원)</div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead><tr><th>채널</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>5월</th><th>6월</th><th>7월</th></tr></thead>
-          <tbody>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td><td>5,205</td><td>5,090</td><td>4,635</td><td>5,268</td><td>5,786</td><td>5,031</td><td>5,205</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td><td>1,265</td><td>1,158</td><td>1,350</td><td>1,290</td><td>1,288</td><td>1,133</td><td>1,117</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td><td>703</td><td>656</td><td>951</td><td>798</td><td>871</td><td>833</td><td>712</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td><td>55</td><td>89</td><td>62</td><td>61</td><td>37</td><td>116</td><td>82</td></tr>
-          <tr><td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td><td>245</td><td>233</td><td>226</td><td>218</td><td>243</td><td>205</td><td>147</td></tr>
-          <tr><td>합계</td><td>7,473</td><td>7,226</td><td>7,224</td><td>7,635</td><td>8,225</td><td>7,318</td><td>7,263</td></tr>
-          </tbody>
-        </table>
+      <div class="card-title"><span class="dot"></span>월별 수수료 트렌드 (1~7월)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;">* 단위: 만원</p>
+      <div class="chart-wrap" style="height:180px">
+        <canvas id="trendChartJul"></canvas>
+      </div>
     </div>
 
     <!-- MoM LINE -->
@@ -1480,17 +1472,17 @@ window.addEventListener('DOMContentLoaded', function() {
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
             <td>₩101,513,852</td><td class="down">-11.78%</td><td class="up">+8.41%</td>
-            <td>$175.58</td><td class="flat">-0.19%</td><td class="up">+27.27%</td>
+            <td>$176.75</td><td class="up">+0.67%</td><td class="up">+59.69%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
             <td>₩11,441,405</td><td class="down">-44.86%</td><td class="down">-44.08%</td>
-            <td>$622.55</td><td class="up">+350.54%</td><td class="up">+210.28%</td>
+            <td>$260.78</td><td class="down">-58.11%</td><td class="down">-41.08%</td>
           </tr>
           <tr>
             <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
             <td>₩12,844,831</td><td class="down">-26.95%</td><td class="down">-47.01%</td>
-            <td>£71.86</td><td class="up">+29.48%</td><td class="up">+53.94%</td>
+            <td>£79.11</td><td class="up">+10.09%</td><td class="down">-26.78%</td>
           </tr>
           <tr>
             <td>합계</td>
@@ -1563,6 +1555,7 @@ window.addEventListener('DOMContentLoaded', function() {
           <div style="font-size:12px;font-weight:600;color:var(--up);">▲33</div>
         </div>
       </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;text-align:right;">* 가입월 거래 건수의 월별 증감폭</p>
     </div>
 
   </div>
@@ -1583,17 +1576,18 @@ window.addEventListener('DOMContentLoaded', function() {
         <div class="insight-card" style="border-left:3px solid var(--up);">
           <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
           <div class="insight-content">
-            <div class="insight-title">일본경매, 유일하게 수수료·주문·물품가 3개 지표 전월 동반 상승</div>
-            <div class="insight-body">수수료 +3.45%, 주문 +4.06%, 물품가 +3.12% 전월대비 모두 상승
+            <div class="insight-title">일본경매, 수수료·거래건수·물품가 3개 지표 전월 동반 상승</div>
+            <div class="insight-body">수수료 +3.45%, 거래건수 +4.06%, 물품가 +3.12% 전월대비 모두 상승
               <br>전체 수수료 비중도 71.7%(전월 68.7%)로 확대되며 실적을 견인</div>
           </div>
         </div>
         <div class="insight-card" style="border-left:3px solid var(--up);">
           <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
           <div class="insight-content">
-            <div class="insight-title">가입월 거래건수, 전년 동월 대비 큰 폭 증가</div>
-            <div class="insight-body">가입월 거래 224건으로 전월대비 +17.28%, 작년 7월(101건) 대비는 +121.78%
-              <br>신규 유입 규모는 줄었지만 유입된 회원의 초기 거래 참여율은 크게 개선</div>
+            <div class="insight-title">신규 유입 감소에도 구매 전환 성과 개선</div>
+            <div class="insight-body">신규회원 유입은 전월 대비 약 30% 감소했으나, 
+              <br>유입 회원의 80%가 구매로 전환되며 전환율이 크게 개선됨
+              <br>실제 거래로 이어지는 고객 비중이 높아져 신규회원의 구매 전환 효율이 개선된 것으로 판단됨</div>
           </div>
         </div>
       </div>
@@ -1609,17 +1603,19 @@ window.addEventListener('DOMContentLoaded', function() {
         <div class="insight-card" style="border-left:3px solid var(--down);">
           <div class="insight-icon icon-down" style="color:var(--down);">↓</div>
           <div class="insight-content">
-            <div class="insight-title">영국경매, 5개 채널 중 전월대비 최대 낙폭</div>
-            <div class="insight-body">주문 -29.46%, 수수료 -28.57%, 물품가 -26.95%로 전 지표 동반 하락
-              <br>전년 동월 대비로도 세 지표 모두 -26~47% 감소</div>
+            <div class="insight-title">일본경매를 제외하면 실적 감소폭이 더 큼</div>
+            <div class="insight-body">일본경매를 제외한 4개 채널의 수수료는 전월 대비 약 10.1% 감소
+              <br>일본경매의 성장으로 전체 수수료 감소폭은 0.77%에 그쳤으나, 일본경매 의존도가 지속적으로 높아질것으로 예상됩니다.</div>
           </div>
         </div>
         <div class="insight-card" style="border-left:3px solid var(--down);">
           <div class="insight-icon icon-down" style="color:var(--down);">↓</div>
           <div class="insight-content">
-            <div class="insight-title">신규 가입자, 전월·전년 동시 감소</div>
-            <div class="insight-body">279명으로 전월대비 -29.72%, 작년 7월(347명) 대비도 -19.60%
-              <br>가입 자체의 유입 총량 둔화가 뚜렷하게 나타남</div>
+            <div class="insight-title">미국경매 거래량 감소 지속</div>
+            <div class="insight-body">미국경매는 5월 이후 거래량 감소가 이어지며, 7월에는 주문건수, 대행수수료, 물품가 동반 감소하였음
+              <br>반면 평균 물품가는 0.67% 상승해, 거래 단가가 유지·상승했음에도 이용량 감소로 전체 실적이 하락한 구조로 분석됨
+              <br>미국 채널의 가격 경쟁력 및 고객 이탈 원인을 종합적으로 점검할 필요가 있음
+            </div>
           </div>
         </div>
       </div>
@@ -1636,11 +1632,10 @@ window.addEventListener('DOMContentLoaded', function() {
       <div class="insight-card" style="border-left:3px solid var(--accent);">
         <div class="insight-icon" style="background:var(--accent-light);color:var(--warn);">!</div>
         <div class="insight-content">
-          <div class="insight-title">채널 편중 심화 — 일본경매 의존도 상승
-            <br><span style="color:gray;">일본경매 외 4개 채널은 모두 전월대비 수수료 감소</span></div>
-          <div class="insight-body">일본경매를 제외한 일본구매·미국경매·미국구매·영국경매 4개 채널 모두 전월대비 수수료가 하락하면서
-            <br>일본경매 비중이 68.7%→71.7%로 확대. 전체 수수료가 -0.77% 감소한 것에 비해 채널 쏠림은 오히려 심화되는 모습
-            <br><br>평균 수수료율은 7.01%로 전월과 동일 수준을 유지해, 채널 구성 변화에도 전체 수익성 자체는 안정적으로 방어됨</div>
+          <div class="insight-title">채널 편중 심화 ,일본경매 의존도 상승
+            <br><span style="color:gray;">일본경매 성장이 다른 채널 하락분을 대부분 상쇄</span></div>
+          <div class="insight-body">일본경매 수수료는 전월 대비 약 174만원 증가했지만, 나머지 4개 채널에서 약 230만원이 감소
+            <br>전체 수수료는 약 57만원 감소하였음. 즉, 일본경매가 하락 폭을 방어했으나, 단일 채널 성장만으로 전체 실적을 상승 전환 시키지는 못했습니다.</div>
           <div class="insight-title">미국구매, 주문은 늘었지만 수수료·물품가는 역행</div>
           <div class="insight-body">주문건수는 21건→28건(+33.33%)으로 증가했으나 수수료는 -29.40%, 물품가는 -44.86%로 감소
             <br>표본이 월 20~30건 수준으로 적어 단가가 낮은 소액 거래가 늘며 나타난 결과로 추정되며, 큰 의미 부여보다는 추세 확인이 필요한 구간</div>
@@ -1665,12 +1660,60 @@ const usB = [552404,889141,622716,609845,374035];
 const uk  = [2454043,2327434,2261370,2176020,2431884];
 const gridColor = 'rgba(0,0,0,0.05)';
 const textColor = '#999BAA';
+function formatFeeTooltipLabel(ctx) {
+  const raw = Number(ctx.raw || 0);
+  return '  ' + ctx.dataset.label + ': ₩' + raw.toLocaleString() + ' (' + Math.round(raw / 10000).toLocaleString() + '만원)';
+}
+function formatFeeTooltipFooter(items) {
+  const total = items.reduce((sum, item) => sum + Number(item.raw || 0), 0);
+  return '합계: ₩' + total.toLocaleString() + ' (' + Math.round(total / 10000).toLocaleString() + '만원)';
+}
+
+// TREND BAR
+new Chart(document.getElementById('trendChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      { label:'일본경매', data:jpA, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
+      { label:'일본구매', data:jpB, backgroundColor:'#ED7D31', stack:'s' },
+      { label:'미국경매', data:usA, backgroundColor:'#FFC000', stack:'s' },
+      { label:'미국구매', data:usB, backgroundColor:'#70AD47', stack:'s' },
+      { label:'영국경매', data:uk,  backgroundColor:'#C43D4B', stack:'s' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#fff',
+        titleColor: '#1A1A2E',
+        bodyColor: '#666680',
+        footerColor: '#1A1A2E',
+        borderColor: '#E0E4EB',
+        borderWidth: 1,
+        padding: 10,
+        callbacks: {
+          label: formatFeeTooltipLabel,
+          footer: formatFeeTooltipFooter
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+      y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+    }
+  }
+});
+
 // DONUT 수수료
 new Chart(document.getElementById('pieChart'), {
   type: 'doughnut',
   data: {
     labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-    datasets: [{ data: [57858639,12883963,8709125,2431884,374035], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+    datasets: [{ data: [57858639,12883963,8709125,2431884,374035], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
   },
   options: {
     responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -1685,7 +1728,7 @@ new Chart(document.getElementById('orderPieChart'), {
   type: 'doughnut',
   data: {
     labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-    datasets: [{ data: [5800,1346,426,111,45], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+    datasets: [{ data: [5800,1346,426,111,45], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
   },
   options: {
     responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -1733,11 +1776,11 @@ new Chart(document.getElementById('orderPieChart'), {
         {
           label: 'UK 영국경매',
           data: [-5.17, -2.84, -3.77, 11.76],
-          borderColor: '#5B9BD5',
+          borderColor: '#C43D4B',
           backgroundColor: 'transparent',
           borderWidth: 2,
           pointRadius: 5,
-          pointBackgroundColor: '#5B9BD5',
+          pointBackgroundColor: '#C43D4B',
           pointBorderColor: '#fff',
           pointBorderWidth: 2,
           tension: 0.3
@@ -1909,12 +1952,52 @@ function initJunCharts() {
   var usAJ = [7025315,6558848,9513260,7978543,8709125,8334580];
   var usBJ = [552404,889141,622716,609845,374035,1158596];
   var ukJ  = [2454043,2327434,2261370,2176020,2431884,2051363];
+
+  // TREND BAR
+  new Chart(document.getElementById('trendChartJun'), {
+    type: 'bar',
+    data: {
+      labels: monthsJun,
+      datasets: [
+        { label:'일본경매', data:jpAJ, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
+        { label:'일본구매', data:jpBJ, backgroundColor:'#ED7D31', stack:'s' },
+        { label:'미국경매', data:usAJ, backgroundColor:'#FFC000', stack:'s' },
+        { label:'미국구매', data:usBJ, backgroundColor:'#70AD47', stack:'s' },
+        { label:'영국경매', data:ukJ,  backgroundColor:'#C43D4B', stack:'s' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#fff',
+          titleColor: '#1A1A2E',
+          bodyColor: '#666680',
+          footerColor: '#1A1A2E',
+          borderColor: '#E0E4EB',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            label: formatFeeTooltipLabel,
+            footer: formatFeeTooltipFooter
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+      }
+    }
+  });
+
     // DONUT 수수료
   new Chart(document.getElementById('pieChartJun'), {
     type: 'doughnut',
     data: {
       labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-      datasets: [{ data: [50313871,11329453,8334580,2051363,1158596], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+      datasets: [{ data: [50313871,11329453,8334580,2051363,1158596], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -1929,7 +2012,7 @@ function initJunCharts() {
     type: 'doughnut',
     data: {
       labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-      datasets: [{ data: [5200,1261,396,112,21], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+      datasets: [{ data: [5200,1261,396,112,21], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -1949,7 +2032,7 @@ function initJunCharts() {
         datasets: [
           { label: 'JP 일본경매', data: [-9.91, 13.71, 9.83, -12.34], borderColor: '#4472C4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4472C4', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
           { label: 'US 미국경매', data: [44.88, -16.13, 9.16, -3.33], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
-          { label: 'UK 영국경매', data: [-2.84, -3.77, 11.76, -15.46], borderColor: '#5B9BD5', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#5B9BD5', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 }
+          { label: 'UK 영국경매', data: [-2.84, -3.77, 11.76, -15.46], borderColor: '#C43D4B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#C43D4B', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 }
         ]
       },
       options: {
@@ -2052,12 +2135,51 @@ function initJulCharts() {
   var usBJl = [552404,889141,622716,609845,374035,1158596,817945];
   var ukJl  = [2454043,2327434,2261370,2176020,2431884,2051363,1465373];
 
+  // TREND BAR
+  new Chart(document.getElementById('trendChartJul'), {
+    type: 'bar',
+    data: {
+      labels: monthsJul,
+      datasets: [
+        { label:'일본경매', data:jpAJl, backgroundColor:'#4472C4', stack:'s', borderRadius:3 },
+        { label:'일본구매', data:jpBJl, backgroundColor:'#ED7D31', stack:'s' },
+        { label:'미국경매', data:usAJl, backgroundColor:'#FFC000', stack:'s' },
+        { label:'미국구매', data:usBJl, backgroundColor:'#70AD47', stack:'s' },
+        { label:'영국경매', data:ukJl,  backgroundColor:'#C43D4B', stack:'s' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#fff',
+          titleColor: '#1A1A2E',
+          bodyColor: '#666680',
+          footerColor: '#1A1A2E',
+          borderColor: '#E0E4EB',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            label: formatFeeTooltipLabel,
+            footer: formatFeeTooltipFooter
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+        y: { ticks: { color: textColor, font: { size: 10 }, callback: v => '₩' + Math.round(v/10000000) + '천만' }, grid: { color: gridColor }, stacked: true }
+      }
+    }
+  });
+
     // DONUT 수수료
   new Chart(document.getElementById('pieChartJul'), {
     type: 'doughnut',
     data: {
       labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-      datasets: [{ data: [52051977,11169804,7117606,1465373,817945], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+      datasets: [{ data: [52051977,11169804,7117606,1465373,817945], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -2073,7 +2195,7 @@ function initJulCharts() {
     type: 'doughnut',
     data: {
       labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
-      datasets: [{ data: [5411,1254,364,79,28], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#5B9BD5','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+      datasets: [{ data: [5411,1254,364,79,28], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false, cutout: '68%',
@@ -2094,7 +2216,7 @@ function initJulCharts() {
         datasets: [
           { label: 'JP 일본경매', data: [13.71, 9.83, -12.34, 3.45], borderColor: '#4472C4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4472C4', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
           { label: 'US 미국경매', data: [-16.13, 9.16, -3.33, -14.60], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
-          { label: 'UK 영국경매', data: [-3.77, 11.76, -15.46, -28.57], borderColor: '#5B9BD5', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#5B9BD5', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 }
+          { label: 'UK 영국경매', data: [-3.77, 11.76, -15.46, -28.57], borderColor: '#C43D4B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#C43D4B', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 }
         ]
       },
       options: {
