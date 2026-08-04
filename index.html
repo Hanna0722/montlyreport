@@ -7,6 +7,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
+const weeklyValueLabelsPlugin = {
+  id: 'weeklyValueLabels',
+  afterDatasetsDraw(chart) {
+    const { ctx, chartArea } = chart;
+    ctx.save();
+    ctx.font = '600 10px "Noto Sans KR", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    chart.data.datasets.forEach((dataset, datasetIndex) => {
+      const meta = chart.getDatasetMeta(datasetIndex);
+      if (meta.hidden) return;
+
+      meta.data.forEach((point, index) => {
+        const value = dataset.data[index];
+        const label = Number(value).toLocaleString();
+        const textWidth = ctx.measureText(label).width;
+        const boxWidth = textWidth + 8;
+        const boxHeight = 15;
+        const pointIsLow = point.y > chartArea.top + (chartArea.bottom - chartArea.top) * 0.62;
+        const pointIsHigh = point.y < chartArea.top + (chartArea.bottom - chartArea.top) * 0.24;
+        const offset = pointIsLow ? -16 : pointIsHigh ? 16 : (datasetIndex % 2 === 0 ? -16 : 16);
+        const x = Math.min(Math.max(point.x, chartArea.left + boxWidth / 2), chartArea.right - boxWidth / 2);
+        const y = Math.min(Math.max(point.y + offset, chartArea.top + boxHeight / 2), chartArea.bottom - boxHeight / 2);
+
+        ctx.fillStyle = 'rgba(255,255,255,0.86)';
+        ctx.fillRect(x - boxWidth / 2, y - boxHeight / 2, boxWidth, boxHeight);
+        ctx.fillStyle = dataset.borderColor || '#666680';
+        ctx.fillText(label, x, y);
+      });
+    });
+    ctx.restore();
+  }
+};
+
 // WEEKLY LINE CHART
 window.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById('weeklyLineChart');
@@ -73,6 +108,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
       ]
     },
+    plugins: [weeklyValueLabelsPlugin],
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -608,9 +644,31 @@ window.addEventListener('DOMContentLoaded', function() {
         <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
         <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <div class="chart-wrap" style="height:180px">
+      <div class="chart-wrap" style="height:220px">
         <canvas id="trendChart"></canvas>
       </div>
+      <table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">1월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">2월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid var(--border);padding:4px;font-weight:600;">합계</td>
+            <td style="border:1px solid var(--border);padding:4px;">-</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-248만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-1만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 410만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 591만원</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -623,6 +681,22 @@ window.addEventListener('DOMContentLoaded', function() {
       <div style="position:relative;height:180px;">
         <canvas id="momLineChart" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
       </div>
+      <table style="width:100%;margin-top:10px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">2월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">JP</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-9.91%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+13.71%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.83%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">US</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+44.88%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-16.13%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.16%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">UK</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-2.84%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-3.77%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+11.76%</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <!-- ── TABLE ── -->
@@ -983,9 +1057,33 @@ window.addEventListener('DOMContentLoaded', function() {
         <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
         <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <div class="chart-wrap" style="height:180px">
+      <div class="chart-wrap" style="height:220px">
         <canvas id="trendChartJun"></canvas>
       </div>
+      <table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">1월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">2월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid var(--border);padding:4px;font-weight:600;">합계</td>
+            <td style="border:1px solid var(--border);padding:4px;">-</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-248만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-1만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 410만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 591만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-907만원</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <!-- MoM LINE -->
     <div class="card">
@@ -998,6 +1096,22 @@ window.addEventListener('DOMContentLoaded', function() {
       <div style="position:relative;height:180px;">
         <canvas id="momLineChartJun" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
       </div>
+      <table style="width:100%;margin-top:10px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">JP</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+13.71%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.83%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-12.34%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">US</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-16.13%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.16%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-3.33%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">UK</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-3.77%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+11.76%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-15.46%</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <!-- ── WEEKLY (최근 3주) ── -->
@@ -1359,9 +1473,35 @@ window.addEventListener('DOMContentLoaded', function() {
         <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매</span>
         <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매</span>
       </div>
-      <div class="chart-wrap" style="height:180px">
+      <div class="chart-wrap" style="height:220px">
         <canvas id="trendChartJul"></canvas>
       </div>
+      <table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">1월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">2월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">7월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid var(--border);padding:4px;font-weight:600;">합계</td>
+            <td style="border:1px solid var(--border);padding:4px;">-</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-248만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-1만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 410만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+ 591만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-907만원</td>
+            <td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-57만원</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- MoM LINE -->
@@ -1375,6 +1515,22 @@ window.addEventListener('DOMContentLoaded', function() {
       <div style="position:relative;height:180px;">
         <canvas id="momLineChartJul" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
       </div>
+      <table style="width:100%;margin-top:10px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">7월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">JP</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.83%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-12.34%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+3.45%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">US</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+9.16%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-3.33%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-14.60%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">UK</td><td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+11.76%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-15.46%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-28.57%</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -1673,11 +1829,11 @@ const gridColor = 'rgba(0,0,0,0.05)';
 const textColor = '#999BAA';
 function formatFeeTooltipLabel(ctx) {
   const raw = Number(ctx.raw || 0);
-  return '  ' + ctx.dataset.label + ': \u20a9' + raw.toLocaleString() + ' (' + Math.round(raw / 10000).toLocaleString() + '만원)';
+  return '  ' + ctx.dataset.label + ' : ' + Math.round(raw / 10000).toLocaleString() + '만원';
 }
 function formatFeeTooltipFooter(items) {
   const total = items.reduce((sum, item) => sum + Number(item.raw || 0), 0);
-  return '합계: \u20a9' + total.toLocaleString() + ' (' + Math.round(total / 10000).toLocaleString() + '만원)';
+  return '합계 : ' + Math.round(total / 10000).toLocaleString() + '만원';
 }
 
 // TREND BAR
@@ -1953,6 +2109,7 @@ function initJunCharts() {
           { label: '미국경매', data: [91, 90, 104, 111], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, order: 4 }
         ]
       },
+      plugins: [weeklyValueLabelsPlugin],
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
@@ -2164,6 +2321,7 @@ function initJulCharts() {
           { label: '미국경매', data: [84, 86, 65, 110, 80], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, order: 4 }
         ]
       },
+      plugins: [weeklyValueLabelsPlugin],
       options: {
         responsive: true, maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
