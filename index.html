@@ -3210,7 +3210,9 @@ function switchMonthTab(month) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', initAugCharts);
+window.addEventListener('DOMContentLoaded', function() {
+  switchMonthTab('aug');
+});
 </script>
 </body>
 </html>
