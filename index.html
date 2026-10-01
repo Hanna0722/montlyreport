@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -547,8 +547,8 @@ window.addEventListener('DOMContentLoaded', function() {
       <div style="font-size:11px;color:var(--text-muted);margin-top:1px;">비드바이코리아 내부 보고용</div>
     </div>
   <div class="header-meta" id="headerMeta">
-    <strong>2026년 8월 월간 매출 보고서</strong>
-    2026.08.01 ~ 2026.08.31 기준
+    <strong>2026년 9월 월간 매출 보고서</strong>
+    2026.09.01 ~ 2026.09.30 기준
   </div>
 </header>
 <div class="page">
@@ -556,7 +556,8 @@ window.addEventListener('DOMContentLoaded', function() {
     <button class="month-tab-btn" id="tabBtnMay" onclick="switchMonthTab('may')">5월</button>
     <button class="month-tab-btn" id="tabBtnJun" onclick="switchMonthTab('jun')">6월</button>
     <button class="month-tab-btn" id="tabBtnJul" onclick="switchMonthTab('jul')">7월</button>
-    <button class="month-tab-btn active" id="tabBtnAug" onclick="switchMonthTab('aug')">8월</button>
+    <button class="month-tab-btn" id="tabBtnAug" onclick="switchMonthTab('aug')">8월</button>
+    <button class="month-tab-btn active" id="tabBtnSep" onclick="switchMonthTab('sep')">9월</button>
   </div>
   <div class="tab-content" id="tab-may">
   <!-- ── KPI ── -->
@@ -1830,7 +1831,7 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
   <!-- /tab-jul -->
 
-  <div class="tab-content active" id="tab-aug">
+  <div class="tab-content" id="tab-aug">
   <!-- ── KPI ── -->
   <p class="section-label" style="margin-top:4px;">핵심 지표 - 8월 실적</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;min-width:0;">
@@ -2278,10 +2279,444 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
   <!-- /tab-aug -->
 
+  <div class="tab-content" id="tab-sep">
+  <!-- ── KPI ── -->
+  <p class="section-label" style="margin-top:4px;">핵심 지표 - 9월 실적</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;min-width:0;">
+    <div class="kpi-card" style="background-color:#ffffff;">
+      <div class="kpi-label">수수료 총액</div>
+      <div class="kpi-value">6,792만</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span class="kpi-badge badge-down">8월대비 16.61%↓</span>
+        <span class="kpi-badge badge-down">전년 9월 대비 13.47%↓</span>
+      </div>
+    </div>
+    <div class="kpi-card accent" style="background-color:#ffffff;">
+      <div class="kpi-label">물품가 총액</div>
+      <div class="kpi-value">11.09억</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span class="kpi-badge badge-down">8월대비 7.81%↓</span>
+        <span class="kpi-badge badge-down">전년 9월 대비 1.75%↓</span>
+      </div>
+    </div>
+    <div class="kpi-card up-card" style="background-color:#ffffff;">
+      <div class="kpi-label">주문 건수</div>
+      <div class="kpi-value">7,293건</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <span class="kpi-badge badge-down">8월대비 3.10%↓</span>
+        <span class="kpi-badge badge-up">전년 9월 대비 2.83%↑</span>
+      </div>
+    </div>
+    <div class="kpi-card purple" style="background-color:#ffffff;">
+      <div class="kpi-label">평균 수수료율</div>
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">(해당 월 수수료 총액 ÷ 물품가 총액)</div>
+      <div class="kpi-value">6.12%</div>
+      <span class="kpi-badge badge-flat">전월 6.77%</span>
+    </div>
+  </div>
+
+  <!-- ── TREND + DONUT ── -->
+  <div class="grid-2" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>9월 수수료 비중</div>
+      <div class="chart-wrap donut-wrap" style="height:140px">
+        <canvas id="pieChartSep"></canvas>
+        <div class="donut-center">
+          <span class="donut-center-val">6,792만</span>
+          <span class="donut-center-sub">총 수수료</span>
+        </div>
+      </div>
+      <div class="legend-row" style="margin-top:12px;margin-bottom:0">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매 65.9%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매 17.8%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매 11.7%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매 3.2%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매 1.4%</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--ch-uk)"></span>9월 주문건수 비중</div>
+      <div class="chart-wrap donut-wrap" style="height:140px">
+        <canvas id="orderPieChartSep"></canvas>
+        <div class="donut-center">
+          <span class="donut-center-val">7,293건</span>
+          <span class="donut-center-sub">총 주문</span>
+        </div>
+      </div>
+      <div class="legend-row" style="margin-top:12px;margin-bottom:0">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매 69.6%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매 21.7%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매 6.5%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>영국경매 1.9%</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usB)"></span>미국구매 0.2%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>월별 수수료 총액 흐름 (1~9월)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:var(--primary)"></span>수수료 총액</span>
+      </div>
+      <div class="chart-wrap" style="height:220px">
+        <canvas id="trendChartSep"></canvas>
+      </div>
+      <table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">1월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">2월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">3월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">4월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">5월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">7월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">8월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">9월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid var(--border);padding:4px;font-weight:600;">합계</td>
+            <td style="border:1px solid var(--border);padding:4px;">-</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-248만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-1만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+410만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+591만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-907만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-57만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+883만원</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-1,353만원</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--ch-usA)"></span>수수료 전월대비 증감률 (JP · US · UK)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>JP 일본경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>US 미국경매</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--ch-uk)"></span>UK 영국경매</span>
+      </div>
+      <div style="position:relative;height:180px;">
+        <canvas id="momLineChartSep" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
+      </div>
+      <table style="width:100%;margin-top:10px;border-collapse:collapse;font-size:11px;text-align:center;">
+        <thead>
+          <tr>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;"></th>
+            <th style="border:1px solid var(--border);padding:4px;font-weight:600;">6월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">7월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">8월</th><th style="border:1px solid var(--border);padding:4px;font-weight:600;">9월</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">JP</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-12.34%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+3.45%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+0.68%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-14.62%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">US</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-3.33%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-14.60%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+82.66%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-38.97%</td></tr>
+          <tr><td style="border:1px solid var(--border);padding:4px;font-weight:600;">UK</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-15.46%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-28.57%</td><td style="border:1px solid var(--border);padding:4px;color:var(--up);font-weight:600;">+66.53%</td><td style="border:1px solid var(--border);padding:4px;color:var(--down);font-weight:600;">-11.49%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── WEEKLY (9월 1~4주차) ── -->
+  <p class="section-label" style="margin-top:8px;">주간 주문건수 추이 (9월 1~5주차)</p>
+  <div class="card" style="margin-bottom:8px;">
+    <div class="legend-row">
+      <span class="leg"><span class="leg-dot" style="background:#444466"></span>전체</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--ch-jpA)"></span>일본경매</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--ch-jpB)"></span>일본구매</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--ch-usA)"></span>미국경매</span>
+    </div>
+    <div class="chart-wrap" style="height:200px">
+      <canvas id="weeklyLineChartSep"></canvas>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin:0 0 24px;">
+    * 1주차(8/31~9/6)는 8월 말(8/31) 1일이 포함된 혼합 주간이며, 5주차(9/28~9/30)는 9월 말 3일 실적(839건)만 포함되어 7일 기준 주차와 단순 비교 시 유의 (10/1~10/4는 10월 보고서에 반영)<br>
+    * 4주차(9/21~9/27)는 추석 연휴(9/24~9/26)가 포함된 주간임 · 주차별 수치는 일별(SUM 시트) 합계 기준
+  </p>
+
+  <!-- ── TABLE ── -->
+  <p class="section-label">채널별 전월 · 전년 대비 상세</p>
+  <div class="card" style="margin-bottom:24px;padding:14px 18px">
+    <div class="table-wrap">
+    <table class="data-table channel-split-table">
+      <thead>
+        <tr>
+          <th>채널</th>
+          <th>수수료</th>
+          <th>전월대비</th>
+          <th>전년 9월 대비</th>
+          <th>주문건수</th>
+          <th>주문 전월</th>
+          <th>주문 전년</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
+          <td>4,474만원</td><td class="down">-14.62%</td><td class="down">-20.24%</td>
+          <td>5,076</td><td class="down">-7.49%</td><td class="down">-0.57%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
+          <td>1,210만원</td><td class="down">-6.89%</td><td class="up">+6.58%</td>
+          <td>1,581</td><td class="up">+15.40%</td><td class="up">+19.23%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
+          <td>794만원</td><td class="down">-38.97%</td><td class="down">-5.49%</td>
+          <td>477</td><td class="down">-7.92%</td><td class="down">-8.62%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
+          <td>98만원</td><td class="up">+60.99%</td><td class="up">+17.89%</td>
+          <td>18</td><td class="down">-33.33%</td><td class="down">-30.77%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
+          <td>216만원</td><td class="down">-11.49%</td><td class="up">+18.74%</td>
+          <td>141</td><td class="up">+13.71%</td><td class="up">+24.78%</td>
+        </tr>
+        <tr>
+          <td>합계</td>
+          <td>6,792만원</td><td class="down">-16.61%</td><td class="down" style="font-size : 18px;">-13.47%</td>
+          <td>7,293</td><td class="down">-3.10%</td><td class="up" style="font-size : 18px;">+2.83%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ── 물품가 테이블 ── -->
+  <p class="section-label" style="margin-top:8px;">물품가(낙찰가/구매가) · 평균 물품가 채널별 상세</p>
+  <div class="card" style="margin-bottom:8px;padding:14px 18px;">
+    <div class="table-wrap">
+      <table class="data-table product-split-table">
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align:middle;border-bottom:1.5px solid var(--border);">채널</th>
+            <th colspan="3" style="text-align:center;border-bottom:1px solid var(--border);padding-bottom:4px;color:var(--text-primary);font-size:11px;">물품가 총액</th>
+            <th colspan="3" style="text-align:center;border-bottom:1px solid var(--border);padding-bottom:4px;color:var(--text-primary);font-size:11px;">평균 물품가 (건당)</th>
+          </tr>
+          <tr>
+            <th>9월</th>
+            <th>전월대비</th>
+            <th>전년 9월 대비</th>
+            <th>9월</th>
+            <th>전월대비</th>
+            <th>전년 9월 대비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
+            <td>7억7,362만원</td><td class="down">-2.59%</td><td class="down">-10.67%</td>
+            <td>￥17,113</td><td class="up">+7.14%</td><td class="down">-1.20%</td>
+          </tr>
+          <tr>
+            <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
+            <td>1억9,116만원</td><td class="up">+5.62%</td><td class="up">+42.13%</td>
+            <td>￥13,577</td><td class="down">-6.91%</td><td class="up">+31.08%</td>
+          </tr>
+          <tr>
+            <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
+            <td>1억977만원</td><td class="down">-45.16%</td><td class="up">+6.45%</td>
+            <td>$158.46</td><td class="down">-40.25%</td><td class="up">+22.13%</td>
+          </tr>
+          <tr>
+            <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
+            <td>1,831만원</td><td class="up">+132.62%</td><td class="up">+55.14%</td>
+            <td>$728.20</td><td class="up">+281.48%</td><td class="up">+137.69%</td>
+          </tr>
+          <tr>
+            <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
+            <td>1,630만원</td><td class="down">-18.42%</td><td class="up">+20.32%</td>
+            <td>￡57.29</td><td class="down">-22.10%</td><td class="down">-5.60%</td>
+          </tr>
+          <tr>
+            <td>합계</td>
+            <td>11억915만원</td><td class="down">-7.81%</td><td class="down" style="font-size : 18px;">-1.75%</td>
+            <td>-</td><td>-</td><td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin:0 0 24px;">
+    * 미국구매는 9월 18건 규모로, 소수 고액 건의 영향이 커 평균 물품가($728.20, 전월 $190.89) 변동폭 해석에 유의 필요
+  </p>
+
+  <!-- ── 가입자 섹션 ── -->
+  <p class="section-label" style="margin-top:8px;">신규 가입자 · 가입월 거래</p>
+  <div style="display:grid;grid-template-columns:3fr 7fr;gap:16px;margin-bottom:24px;min-width:0;align-items:stretch;">
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">신규 가입자</div>
+        <div class="kpi-value" style="font-size:26px;">329명</div>
+        <span class="kpi-badge badge-up">8월대비 35.95%↑</span>
+        <span class="kpi-badge badge-down">작년 9월대비 6.53%↓</span>
+      </div>
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">가입월 거래</div>
+        <div class="kpi-value" style="font-size:26px;">272건</div>
+        <span class="kpi-badge badge-up">8월대비 12.40%↑</span>
+        <span class="kpi-badge badge-up">작년 9월대비 195.65%↑</span>
+      </div>
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">가입월 결제건수 비율</div>
+        <div class="kpi-value" style="font-size:26px;">82.67%</div>
+        <span class="kpi-badge badge-flat">가입월거래(건수) ÷ 신규가입자(명)</span>
+      </div>
+    </div>
+
+    <div class="card" style="display:flex;flex-direction:column;">
+      <div class="card-title"><span class="dot" style="background:#4A7FB5"></span>신규가입자 · 가입월 거래 추이 (1~9월)</div>
+      <div class="legend-row">
+        <span class="leg"><span class="leg-dot" style="background:#AAAAAA"></span>2025년 가입월 거래</span>
+        <span class="leg"><span class="leg-dot" style="background:var(--primary)"></span>2026년 가입월 거래</span>
+        <span class="leg"><span class="leg-dot" style="background:#4A7FB5"></span>2026년 신규 가입자</span>
+      </div>
+      <div style="flex:1;position:relative;min-height:140px;">
+        <canvas id="joinTradeChartSep" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:0;margin-top:14px;border-top:1px solid var(--border);padding-top:12px;">
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">1월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲1</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">2월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲30</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">3월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--down);">▼22</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">4월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲86</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">5월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲110</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">6월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--down);">▼123</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">7월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲33</div>
+        </div>
+        <div style="text-align:center;border-right:1px solid var(--border);">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">8월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲18</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">9월</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">▲30</div>
+        </div>
+      </div>
+      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;text-align:right;">* 가입월 거래는 신규가입자가 가입한 달에 결제한 건수 기준으로, 1인이 여러 건 결제 시 중복 집계되어 인원 수와는 다를 수 있음<br>* 가입월 거래 건수의 월별 증감폭 · 9/15~9/16은 일별 가입 데이터가 입력되어 있지 않음<br>* 9월 가입월 거래 272건 중 9/10 하루 106건이 포함되어 있음(해당 일 제외 시 166건)</p>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── INSIGHTS ── -->
+  <p class="section-label">주요 인사이트</p>
+
+  <div class="insight-stack">
+    <div class="insight-column">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--up);display:inline-block;flex-shrink:0;"></span>
+        <span style="font-size:11px;font-weight:700;color:var(--up);letter-spacing:0.06em;">상승점</span>
+      </div>
+      <div class="insight-grid insight-grid-horizontal">
+        <div class="insight-card" style="border-left:3px solid var(--up);">
+          <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
+          <div class="insight-content">
+            <div class="insight-title">일본구매, 주문건수와 물품가 모두 올해 최고 수준 기록</div>
+            <div class="insight-body">1,370건 → 1,581건(+15.40%), 작년 9월 대비 +19.23%로 올해 가장 많은 건수를 기록.
+              <br>물품가 전월 대비 5.62% 증가, 작년 9월 대비 +42.13% 증가
+              <br>
+              <br>건당 수수료는 ₩9,483 → ₩7,650 로 낮아져 수수료 수입이 1,300만원에서 1,210만원으로 소폭 감소.
+              <br>리뉴얼 이후 일반 구매대행 대행수수료를 800엔→500엔으로 인하하고 송금수수료를 면제하면서 건당 수수료율이 7.18%→6.33%로 낮아진 것으로 예상.</div>
+          </div>
+        </div>
+        <div class="insight-card" style="border-left:3px solid var(--up);">
+          <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
+          <div class="insight-content">
+            <div class="insight-title">9/14 리뉴얼 오픈 이후 신규가입 증가, 5월 이후 처음 반등</div>
+            <div class="insight-body">신규가입은 7월 279명, 8월 242명으로 이어진 감소세에서 9월 <strong>329명(+35.95%)</strong>으로 반등함.
+              <br>리뉴얼 오픈(9/14) 전 9/1~9/13 일평균 7.5명에서 오픈 후 9/17~9/30 일평균 16.3명으로 증가한 흐름이 확인됨.
+              <br>
+              <br>※ 9/15~9/16은 회원 가입 오류로 가입 데이터가 0명으로 확인.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-column">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--down);display:inline-block;flex-shrink:0;"></span>
+        <span style="font-size:11px;font-weight:700;color:var(--down);letter-spacing:0.06em;">하강점</span>
+      </div>
+      <div class="insight-grid insight-grid-horizontal">
+        <div class="insight-card" style="border-left:3px solid var(--down);">
+          <div class="insight-icon icon-down" style="color:var(--down);">↓</div>
+          <div class="insight-content">
+            <div class="insight-title">수수료 총액 -16.61%, 주문건수 감소폭보다 건당 수수료 하락이 큼</div>
+            <div class="insight-body">수수료 총액은 8,145만원 → 6,792만원으로 16.61% 하락, 작년 대비로도 13.47% 하락세.
+              <br>주문건의 감소영향도 있지만, 건당 평균 수수료가 ₩10,823 → ₩9,313(-13.95%)으로 감소되어 수수료 총 이익이 하락한 영향이 있음.
+              <br>
+              <br>감소분 1,353만원 중 일본경매 -766만원, 미국경매 -507만원이 대부분.
+              <br>일본구매는 리뉴얼 이후 대행수수료 인하(800엔→500엔)와 송금수수료 면제로 건당 수수료율이 낮아짐.</div>
+          </div>
+        </div>
+        <div class="insight-card" style="border-left:3px solid var(--down);">
+          <div class="insight-icon icon-down" style="color:var(--down);">↓</div>
+          <div class="insight-content">
+            <div class="insight-title">일본경매, 평균 낙찰가는 올랐으나 수수료율 하락으로 수수료 -14.62%</div>
+            <div class="insight-body">낙찰건수 5,487건→5,076건(-7.49%), 작년 9월 대비 -0.57%로 건수는 전년 수준을 유지함.
+              <br>평균 낙찰가는 ￥15,972→￥17,113(+7.14%)로 올랐지만 물품가대비 수수료율은 6.60%→5.78%로 낮아졌음.
+              <br>
+              <br>엔화 기준 수수료는 -13.17%, 원화 기준은 -14.62%로
+              <br>환율(100엔당 905.7원 → 890.6원)이 감소폭을 일부 키움.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:24px;grid-column:1 / -1;width:100%;display:block;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0;"></span>
+      <span style="font-size:11px;font-weight:700;color:var(--warn);letter-spacing:0.06em;">인사이트</span>
+    </div>
+    <div class="insight-grid insight-grid-merged" style="margin-bottom:0;">
+      <div class="insight-card" style="border-left:3px solid var(--accent);">
+        <div class="insight-icon" style="background:var(--accent-light);color:var(--warn);">!</div>
+        <div class="insight-content">
+          <div class="insight-title">리뉴얼 이후 일본 구매대행 유입 확대, 일본구매 거래가 늘어남</div>
+          <div class="insight-body">리뉴얼 시 <strong>사이트 메인에 야후 프리마·라쿠마·야후 쇼핑을 전면 배치</strong>하고, 개발팀의 <strong>검색엔진 환경 개선</strong>과 <strong>키워드 광고 금액 상향</strong>이 더해지며 구매 유입이 높아졌음.
+            <br>일본구매 일평균 주문은 8월 44.2건, 리뉴얼 오픈 전(9/1~9/13) 43.4건에서 오픈 후(9/14~9/30) 59.8건(+37.9%)으로 증가함.
+            <br>일본팀에서도 구매대행 건이 늘어 업무량이 체감적으로 많아졌다는 의견이 있음.
+            <br><strong>건당 수수료율은 대행수수료 인하(800엔→500엔)와 송금수수료 면제 영향</strong>으로 낮아져, 주문은 +15.40% 늘었지만 수수료는 -6.89%로 소폭 감소함.</div>
+          <div class="insight-title">미국경매 수수료 감소는 거래 이탈보다 8월 고가 거래의 기저효과</div>
+          <div class="insight-body">미국경매 수수료는 1,300만원→794만원(-38.97%)으로 줄었으나, 주문건수는 518건→477건(-7.92%)로 감소폭이 작음.
+            <br>8월은 평균 낙찰가가 $265.20로 이례적으로 높았고(1~7월 $145.81~$181.28), 9월은 $158.46로 평균 수준에 가까워짐.
+            <br>작년 9월 대비로는 주문 -8.62%, 수수료 -5.49%, 물품가 +6.45%로 큰 변화가 없어, 8월 급증분이 정상 수준으로 돌아온 것으로 해석됨.</div>
+          <div class="insight-title">일평균 주문은 전월 수준 유지, 수수료는 건당 수익성 하락 영향</div>
+          <div class="insight-body">9월 주문 7,293건은 8월 대비 -3.10%이나, 9월이 8월보다 하루 적어 일평균은 242.8건→243.1건(+0.1%)으로 큰 감소폭은 보이지 않았음.
+            <br>반면 일평균 수수료는 263만원→226만원(-13.8%)으로 줄어, 거래량보다 건당 수수료·물품가 구성 변화가 수수료 감소의 주된 요인임.</div>
+          <div class="insight-title">주간 주문건수 4주 연속 감소 후 월말 3일간 반등</div>
+          <div class="insight-body">주간 주문은 1주차 1,927건→2주차 1,642건→3주차 1,612건→4주차 1,547건으로 줄었고, 일본경매가 1,384건→1,072건으로 가장 크게 줄었음.
+            <br>5주차(9/28~9/30) 3일간은 839건으로 일평균 280건으로 4주차 일평균(221건)보다 높았음.
+            <br>특히, 일본구매가 280건(일평균 93건)으로 큰 폭으로 증가함<strong>(1~4주차 일본구매 일평균 38~57건)</strong>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <!-- /tab-sep -->
+
 
 </div><!-- /page -->
 <footer class="report-footer" id="reportFooter">
-  비드바이코리아 기획운영팀 내부 보고용 · 2026년 8월 31일 기준
+  비드바이코리아 기획운영팀 내부 보고용 · 2026년 9월 30일 기준
 </footer>
 <script>
 const months = ['1월','2월','3월','4월','5월'];
@@ -3179,16 +3614,224 @@ function initAugCharts() {
   }
 }
 
+// ── SEP CHARTS (lazy init) ──
+let sepChartsInitialized = false;
+
+function initSepCharts() {
+  if (sepChartsInitialized) return;
+  sepChartsInitialized = true;
+
+  var gridColor = 'rgba(0,0,0,0.05)';
+  var textColor = '#999BAA';
+
+  // WEEKLY LINE (9월 1~5주차, 1주차는 8/31 포함 · 5주차는 9/28~9/30 3일)
+  var wCanvasSep = document.getElementById('weeklyLineChartSep');
+  if (wCanvasSep) {
+    new Chart(wCanvasSep, {
+      type: 'line',
+      data: {
+        labels: ['1주차(8/31~9/6)', '2주차(9/7~9/13)', '3주차(9/14~9/20)', '4주차(9/21~9/27)', '5주차(9/28~9/30)'],
+        datasets: [
+          { label: '전체', data: [1927, 1642, 1612, 1547, 839], borderColor: '#444466', backgroundColor: 'rgba(68,68,102,0.07)', borderWidth: 2.5, pointRadius: 6, pointBackgroundColor: '#444466', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: true, order: 1 },
+          { label: '일본경매', data: [1384, 1248, 1077, 1072, 485], borderColor: '#4472C4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4472C4', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, order: 2 },
+          { label: '일본구매', data: [351, 263, 401, 336, 280], borderColor: '#ED7D31', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#ED7D31', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, order: 3 },
+          { label: '미국경매', data: [163, 101, 94, 96, 54], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, order: 4 }
+        ]
+      },
+      plugins: [weeklyValueLabelsPlugin],
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 10, hitRadius: 14, hoverBorderWidth: 4 }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            mode: 'nearest',
+            intersect: false,
+            backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680',
+            borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+            callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + ctx.raw.toLocaleString() + '건' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 10, weight: '500' } }, grid: { color: gridColor } },
+          y: { ticks: { color: textColor, font: { size: 10 }, callback: v => v.toLocaleString() }, grid: { color: gridColor }, suggestedMin: 0 }
+        }
+      }
+    });
+  }
+
+  var monthsSep = ['1월','2월','3월','4월','5월','6월','7월','8월','9월'];
+  var totalFeeSep = [7474, 7226, 7225, 7635, 8226, 7319, 7262, 8145, 6792]; // 만원 단위 (전 채널 합계, 아래 증감표와 일치하도록 보정)
+
+  // TREND LINE (수수료 총액 흐름)
+  var trendCanvasSep = document.getElementById('trendChartSep');
+  if (trendCanvasSep) {
+    new Chart(trendCanvasSep, {
+      type: 'line',
+      data: {
+        labels: monthsSep,
+        datasets: [
+          { label:'수수료 총액', data:totalFeeSep, borderColor:'#E8385A', backgroundColor:'rgba(232,56,90,0.08)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor:'#E8385A', pointBorderColor:'#fff', pointBorderWidth: 2, tension: 0.3, fill: true }
+        ]
+      },
+      plugins: [weeklyValueLabelsPlugin],
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 8, hitRadius: 10, hoverBorderWidth: 3 }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#fff',
+            titleColor: '#1A1A2E',
+            bodyColor: '#666680',
+            borderColor: '#E0E4EB',
+            borderWidth: 1,
+            padding: 10,
+            callbacks: {
+              label: ctx => '  수수료 총액: ' + ctx.raw.toLocaleString() + '만원'
+            }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+          y: { ticks: { color: textColor, font: { size: 10 }, callback: v => v.toLocaleString() + '만' }, grid: { color: gridColor } }
+        }
+      }
+    });
+  }
+
+    // DONUT 수수료
+  new Chart(document.getElementById('pieChartSep'), {
+    type: 'doughnut',
+    data: {
+      labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
+      datasets: [{ data: [44741585, 12102202, 7935218, 2159864, 983163], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ctx.label + ': ' + Math.round(ctx.raw/t*1000)/10 + '%'; } } }
+      }
+    }
+  });
+
+  // DONUT 주문
+  new Chart(document.getElementById('orderPieChartSep'), {
+    type: 'doughnut',
+    data: {
+      labels: ['일본경매','일본구매','미국경매','영국경매','미국구매'],
+      datasets: [{ data: [5076, 1581, 477, 141, 18], backgroundColor: ['#4472C4','#ED7D31','#FFC000','#C43D4B','#70AD47'], borderWidth: 2, borderColor: '#fff', hoverOffset: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: { label: ctx => { const t = ctx.dataset.data.reduce((a,b)=>a+b,0); return ctx.label + ': ' + Math.round(ctx.raw/t*1000)/10 + '%'; } }
+        }
+      }
+    }
+  });
+
+  // MoM LINE (6~9월)
+  var momCanvasAg = document.getElementById('momLineChartSep');
+  if (momCanvasAg) {
+    new Chart(momCanvasAg, {
+      type: 'line',
+      data: {
+        labels: ['6월', '7월', '8월', '9월'],
+        datasets: [
+          { label: 'JP 일본경매', data: [-12.34, 3.45, 0.68, -14.62], borderColor: '#4472C4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4472C4', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
+          { label: 'US 미국경매', data: [-3.33, -14.6, 82.66, -38.97], borderColor: '#FFC000', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#FFC000', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 },
+          { label: 'UK 영국경매', data: [-15.46, -28.57, 66.53, -11.49], borderColor: '#C43D4B', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#C43D4B', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
+        onHover: (event, active) => {
+          event.native.target.style.cursor = active.length ? 'pointer' : 'default';
+        },
+        elements: {
+          point: { hoverRadius: 8, hitRadius: 10, hoverBorderWidth: 3 }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680',
+            borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+            callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + (ctx.raw > 0 ? '+' : '') + ctx.raw.toFixed(2) + '%' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+          y: { ticks: { color: textColor, font: { size: 10 }, callback: v => (v > 0 ? '+' : '') + v + '%' }, grid: { color: gridColor } }
+        }
+      }
+    });
+  }
+
+  // 가입월거래 라인차트 (1~9월)
+  var joinCanvasAg = document.getElementById('joinTradeChartSep');
+  if (joinCanvasAg) {
+    new Chart(joinCanvasAg, {
+      type: 'line',
+      data: {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월'],
+        datasets: [
+          { label: '가입월거래 2025', data: [290, 298, 239, 192, 147, 110, 101, 124, 92], borderColor: '#AAAAAA', backgroundColor: 'transparent', borderWidth: 2, borderDash: [5, 4], pointRadius: 4, pointBackgroundColor: '#AAAAAA', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false },
+          { label: '가입월거래 2026', data: [110, 140, 118, 204, 314, 191, 224, 242, 272], borderColor: '#E8385A', backgroundColor: 'rgba(232,56,90,0.07)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#E8385A', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: true },
+          { label: '신규가입자 2026', data: [448, 432, 425, 407, 417, 397, 279, 242, 329], borderColor: '#4A7FB5', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4A7FB5', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680',
+            borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+            callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + ctx.raw.toLocaleString() + '건' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+          y: { ticks: { color: textColor, font: { size: 10 }, callback: v => v + '건' }, grid: { color: gridColor }, suggestedMin: 0 }
+        }
+      }
+    });
+  }
+}
+
 // ── TAB SWITCHING ──
 function switchMonthTab(month) {
   document.getElementById('tab-may').classList.toggle('active', month === 'may');
   document.getElementById('tab-jun').classList.toggle('active', month === 'jun');
   document.getElementById('tab-jul').classList.toggle('active', month === 'jul');
   document.getElementById('tab-aug').classList.toggle('active', month === 'aug');
+  document.getElementById('tab-sep').classList.toggle('active', month === 'sep');
   document.getElementById('tabBtnMay').classList.toggle('active', month === 'may');
   document.getElementById('tabBtnJun').classList.toggle('active', month === 'jun');
   document.getElementById('tabBtnJul').classList.toggle('active', month === 'jul');
   document.getElementById('tabBtnAug').classList.toggle('active', month === 'aug');
+  document.getElementById('tabBtnSep').classList.toggle('active', month === 'sep');
 
   var meta = document.getElementById('headerMeta');
   var foot = document.getElementById('reportFooter');
@@ -3203,15 +3846,19 @@ function switchMonthTab(month) {
     meta.innerHTML = '<strong>2026년 7월 월간 매출 보고서</strong>2026.07.01 ~ 2026.07.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 7월 31일 기준';
     initJulCharts();
-  } else {
+  } else if (month === 'aug') {
     meta.innerHTML = '<strong>2026년 8월 월간 매출 보고서</strong>2026.08.01 ~ 2026.08.31 기준';
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 8월 31일 기준';
     initAugCharts();
+  } else {
+    meta.innerHTML = '<strong>2026년 9월 월간 매출 보고서</strong>2026.09.01 ~ 2026.09.30 기준';
+    foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 9월 30일 기준';
+    initSepCharts();
   }
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-  switchMonthTab('aug');
+  switchMonthTab('sep');
 });
 </script>
 </body>
