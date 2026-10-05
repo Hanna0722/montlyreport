@@ -2606,7 +2606,63 @@ window.addEventListener('DOMContentLoaded', function() {
           <div style="font-size:12px;font-weight:600;color:var(--up);">▲30</div>
         </div>
       </div>
-      <p style="font-size:10px;color:var(--text-muted);margin:8px 0 0;text-align:right;">* 가입월 거래는 신규가입자가 가입한 달에 결제한 건수 기준으로, 1인이 여러 건 결제 시 중복 집계되어 인원 수와는 다를 수 있음<br>* 가입월 거래 건수의 월별 증감폭 · 9/15~9/16은 일별 가입 데이터가 입력되어 있지 않음<br>* 9월 가입월 거래 272건 중 9/10 하루 106건이 포함되어 있음(해당 일 제외 시 166건)</p>
+    </div>
+
+  </div>
+
+  <!-- ── 복귀유저 설문조사 ── -->
+  <p class="section-label">복귀유저 설문조사</p>
+  <div style="display:grid;grid-template-columns:3fr 7fr;gap:16px;margin-bottom:16px;min-width:0;align-items:stretch;">
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">복귀유저 대상</div>
+        <div class="kpi-value" style="font-size:26px;">1,700명</div>
+        <span class="kpi-badge badge-flat">메일 수신 동의 1,024명 · SMS 동의 1,530명</span>
+      </div>
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">복귀 이벤트 메일 오픈</div>
+        <div class="kpi-value" style="font-size:26px;">97건</div>
+        <span class="kpi-badge badge-down">오픈율 약 9.5% (수신 동의 1,024명 기준)</span>
+      </div>
+      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+        <div class="kpi-label">설문 응답</div>
+        <div class="kpi-value" style="font-size:26px;">32명</div>
+        <span class="kpi-badge badge-flat">복귀유저 전체 대비 약 1.9%</span>
+      </div>
+    </div>
+
+    <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+      <div class="card-title"><span class="dot" style="background:#4A7FB5"></span>설문 결과 요약 (응답 32명)</div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;min-width:0;">
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">이용 중단 주된 이유</div>
+          <div style="font-size:13px;line-height:1.9;">
+            <strong style="color:var(--primary);">1위</strong> 배송비/수수료 부담<br>
+            <strong style="color:var(--primary);">2위</strong> 해외 직구 물품 수요 감소<br>
+            <strong style="color:var(--primary);">3위</strong> 원하는 상품을 찾기 어려움
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">개선 시 재이용 의향 항목</div>
+          <div style="font-size:13px;line-height:1.9;">
+            <strong style="color:var(--primary);">1위</strong> 배송비/수수료 인하<br>
+            <strong style="color:var(--primary);">2위</strong> 프로모션/혜택 확대<br>
+            <strong style="color:var(--primary);">그 외</strong><br> 검색 기능 개선 · 고객센터(CS) 응대 개선 · 사이트/앱 UX 개선
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">마지막 이용 시기</div>
+          <div style="font-size:26px;font-weight:700;line-height:1.2;">6개월~1년</div>
+          <div style="font-size:13px;margin-top:6px;">14명 (44%) · 가장 많음</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;line-height:1.8;">
+        <strong>기타 의견</strong> : 원하는 품목의 직구 제한, 회원 등급 리셋, 최저가 국제배송에 대한 안내 부족
+        <br><strong>비드바이 개선요청</strong> : 쿠폰 기한 연장 및 회원 혜택 확대와 수수료 인하 요청이 다수
+      </div>
     </div>
 
   </div>
@@ -2641,7 +2697,7 @@ window.addEventListener('DOMContentLoaded', function() {
             <div class="insight-body">신규가입은 7월 279명, 8월 242명으로 이어진 감소세에서 9월 <strong>329명(+35.95%)</strong>으로 반등함.
               <br>리뉴얼 오픈(9/14) 전 9/1~9/13 일평균 7.5명에서 오픈 후 9/17~9/30 일평균 16.3명으로 증가한 흐름이 확인됨.
               <br>
-              <br>※ 9/15~9/16은 회원 가입 오류로 가입 데이터가 0명으로 확인.</div>
+              <br>※ 9/15~9/16은 회원 가입 오류로 가입 데이터가 0명.</div>
           </div>
         </div>
       </div>
@@ -2656,7 +2712,7 @@ window.addEventListener('DOMContentLoaded', function() {
         <div class="insight-card" style="border-left:3px solid var(--down);">
           <div class="insight-icon icon-down" style="color:var(--down);">↓</div>
           <div class="insight-content">
-            <div class="insight-title">수수료 총액 -16.61%, 주문건수 감소폭보다 건당 수수료 하락이 큼</div>
+            <div class="insight-title">수수료 -16.61%, 주문건수 감소폭보다 건당 수수료 하락이 큼</div>
             <div class="insight-body">수수료 총액은 8,145만원 → 6,792만원으로 16.61% 하락, 작년 대비로도 13.47% 하락세.
               <br>주문건의 감소영향도 있지만, 건당 평균 수수료가 ₩10,823 → ₩9,313(-13.95%)으로 감소되어 수수료 총 이익이 하락한 영향이 있음.
               <br>
