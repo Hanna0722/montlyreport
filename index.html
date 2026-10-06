@@ -2313,24 +2313,24 @@ window.addEventListener('DOMContentLoaded', function() {
       <div class="kpi-label">수수료 총액</div>
       <div class="kpi-value">6,792만</div>
       <div style="display:flex;flex-direction:column;gap:4px;">
-        <span class="kpi-badge badge-down">8월대비 16.61%↓</span>
-        <span class="kpi-badge badge-down">전년 9월 대비 13.47%↓</span>
+        <span class="kpi-badge badge-down">8월대비 -16.61%</span>
+        <span class="kpi-badge badge-down">전년 9월 대비 -13.47%</span>
       </div>
     </div>
     <div class="kpi-card accent" style="background-color:#ffffff;">
       <div class="kpi-label">물품가 총액</div>
       <div class="kpi-value">11.09억</div>
       <div style="display:flex;flex-direction:column;gap:4px;">
-        <span class="kpi-badge badge-down">8월대비 7.81%↓</span>
-        <span class="kpi-badge badge-down">전년 9월 대비 1.75%↓</span>
+        <span class="kpi-badge badge-down">8월대비 -7.81%</span>
+        <span class="kpi-badge badge-down">전년 9월 대비 -1.75%</span>
       </div>
     </div>
     <div class="kpi-card up-card" style="background-color:#ffffff;">
       <div class="kpi-label">주문 건수</div>
       <div class="kpi-value">7,293건</div>
       <div style="display:flex;flex-direction:column;gap:4px;">
-        <span class="kpi-badge badge-down">8월대비 3.10%↓</span>
-        <span class="kpi-badge badge-up">전년 9월 대비 2.83%↑</span>
+        <span class="kpi-badge badge-down">8월대비 -3.10%</span>
+        <span class="kpi-badge badge-up">전년 9월 대비 +2.83%</span>
       </div>
     </div>
     <div class="kpi-card purple" style="background-color:#ffffff;">
@@ -2592,19 +2592,23 @@ window.addEventListener('DOMContentLoaded', function() {
       <div class="kpi-card" style="flex:1;padding:20px 24px;">
         <div class="kpi-label">신규 가입자</div>
         <div class="kpi-value" style="font-size:26px;">329명</div>
-        <span class="kpi-badge badge-up">8월대비 35.95%↑</span>
-        <span class="kpi-badge badge-down">작년 9월대비 6.53%↓</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+          <span class="kpi-badge badge-up">8월 신규가입자 242명 (+35.95%)</span>
+          <span class="kpi-badge badge-down">작년 9월 신규가입자 352명 (-6.53%)</span>
+        </div>
       </div>
       <div class="kpi-card" style="flex:1;padding:20px 24px;">
         <div class="kpi-label">가입월 거래</div>
         <div class="kpi-value" style="font-size:26px;">272건</div>
-        <span class="kpi-badge badge-up">8월대비 12.40%↑</span>
-        <span class="kpi-badge badge-up">작년 9월대비 195.65%↑</span>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;">
+          <span class="kpi-badge badge-up">8월 가입월 거래 242건 (+12.40%)</span>
+          <span class="kpi-badge badge-up">작년 9월 가입월 거래 92건 (+195.65%)</span>
+        </div>
       </div>
       <div class="kpi-card" style="flex:1;padding:20px 24px;">
         <div class="kpi-label">가입월 결제건수 비율</div>
         <div class="kpi-value" style="font-size:26px;">82.67%</div>
-        <span class="kpi-badge badge-flat">가입월거래(건수) ÷ 신규가입자(명)</span>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">가입월 거래(건) ÷ 신규 가입자(명)</div>
       </div>
     </div>
 
@@ -2613,47 +2617,48 @@ window.addEventListener('DOMContentLoaded', function() {
       <div class="legend-row">
         <span class="leg"><span class="leg-dot" style="background:#AAAAAA"></span>2025년 가입월 거래</span>
         <span class="leg"><span class="leg-dot" style="background:var(--primary)"></span>2026년 가입월 거래</span>
-        <span class="leg"><span class="leg-dot" style="background:#4A7FB5"></span>2026년 신규 가입자</span>
+        <span class="leg"><span class="leg-dot" style="background:rgba(74,127,181,0.45);border-radius:2px;"></span>2026년 신규 가입자 (막대)</span>
       </div>
       <div style="flex:1;position:relative;min-height:140px;">
         <canvas id="joinTradeChartSep" style="position:absolute;top:0;left:0;width:100%!important;height:100%!important;"></canvas>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:0;margin-top:14px;border-top:1px solid var(--border);padding-top:12px;">
+      <div style="margin-top:14px;border-top:1px solid var(--border);padding-top:10px;font-size:11px;font-weight:600;color:var(--text-secondary);">가입월 거래 전월 대비 증감(건)</div>
+      <div style="display:grid;grid-template-columns:repeat(9,1fr);gap:0;margin-top:8px;">
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">1월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲1</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+1</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">2월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲30</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+30</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">3월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--down);">▼22</div>
+          <div style="font-size:12px;font-weight:600;color:var(--down);">-22</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">4월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲86</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+86</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">5월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲110</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+110</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">6월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--down);">▼123</div>
+          <div style="font-size:12px;font-weight:600;color:var(--down);">-123</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">7월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲33</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+33</div>
         </div>
         <div style="text-align:center;border-right:1px solid var(--border);">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">8월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲18</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+18</div>
         </div>
         <div style="text-align:center;">
           <div style="font-size:10px;color:var(--text-muted);margin-bottom:3px;">9월</div>
-          <div style="font-size:12px;font-weight:600;color:var(--up);">▲30</div>
+          <div style="font-size:12px;font-weight:600;color:var(--up);">+30</div>
         </div>
       </div>
     </div>
@@ -3924,9 +3929,9 @@ function initSepCharts() {
       data: {
         labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월'],
         datasets: [
-          { label: '가입월거래 2025', data: [290, 298, 239, 192, 147, 110, 101, 124, 92], borderColor: '#AAAAAA', backgroundColor: 'transparent', borderWidth: 2, borderDash: [5, 4], pointRadius: 4, pointBackgroundColor: '#AAAAAA', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false },
-          { label: '가입월거래 2026', data: [110, 140, 118, 204, 314, 191, 224, 242, 272], borderColor: '#E8385A', backgroundColor: 'rgba(232,56,90,0.07)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#E8385A', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: true },
-          { label: '신규가입자 2026', data: [448, 432, 425, 407, 417, 397, 279, 242, 329], borderColor: '#4A7FB5', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 5, pointBackgroundColor: '#4A7FB5', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false }
+          { label: '가입월거래 2025', data: [290, 298, 239, 192, 147, 110, 101, 124, 92], borderColor: '#AAAAAA', backgroundColor: 'transparent', borderWidth: 2, borderDash: [5, 4], pointRadius: 4, pointBackgroundColor: '#AAAAAA', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false, order: 1 },
+          { label: '가입월거래 2026', data: [110, 140, 118, 204, 314, 191, 224, 242, 272], borderColor: '#E8385A', backgroundColor: 'transparent', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#E8385A', pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.3, fill: false, order: 2 },
+          { type: 'bar', label: '신규가입자 2026', data: [448, 432, 425, 407, 417, 397, 279, 242, 329], backgroundColor: 'rgba(74,127,181,0.35)', borderColor: '#4A7FB5', borderWidth: 1, borderRadius: 4, barPercentage: 0.55, order: 3 }
         ]
       },
       options: {
