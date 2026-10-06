@@ -382,6 +382,15 @@ window.addEventListener('DOMContentLoaded', function() {
   .up { color: var(--up); font-weight: 700; }
   .down { color: var(--down); font-weight: 700; }
   .flat { color: var(--text-muted); }
+  .fee-table td:nth-child(n+2) { text-align: center; line-height: 1.4; white-space: nowrap; }
+  .fee-table td:nth-child(3),
+  .fee-table th:nth-child(3),
+  .fee-table td:nth-child(6),
+  .fee-table th:nth-child(6) { border-left: 1.5px solid var(--border); }
+  .fee-table tbody tr:last-child td { border-top: 1.5px solid var(--border); }
+  .fee-table td:first-child { display: table-cell; text-align: left; white-space: nowrap; }
+  .fee-table td:first-child .ch-dot { display: inline-block; margin-right: 7px; vertical-align: middle; }
+  .fee-sub { display: block; font-size: 11px; font-weight: 500; }
   /* channel color dots in table */
   .ch-dot {
     width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
@@ -2418,119 +2427,150 @@ window.addEventListener('DOMContentLoaded', function() {
       <canvas id="weeklyLineChartSep"></canvas>
     </div>
   </div>
-  <p style="font-size:11px;color:var(--text-muted);margin:0 0 24px;">
-    * 1주차(8/31~9/6)는 8월 말(8/31) 1일이 포함된 혼합 주간이며, 5주차(9/28~9/30)는 9월 말 3일 실적(839건)만 포함되어 7일 기준 주차와 단순 비교 시 유의 (10/1~10/4는 10월 보고서에 반영)<br>
-    * 4주차(9/21~9/27)는 추석 연휴(9/24~9/26)가 포함된 주간임 · 주차별 수치는 일별(SUM 시트) 합계 기준
-  </p>
 
   <!-- ── TABLE ── -->
   <p class="section-label">채널별 전월 · 전년 대비 상세</p>
   <div class="card" style="margin-bottom:24px;padding:14px 18px">
     <div class="table-wrap">
-    <table class="data-table channel-split-table">
+    <table class="data-table fee-table">
       <thead>
         <tr>
           <th>채널</th>
-          <th>수수료</th>
-          <th>전월대비</th>
+          <th>9월 수수료</th>
+          <th>전월 대비</th>
           <th>전년 9월 대비</th>
           <th>주문건수</th>
-          <th>주문 전월</th>
-          <th>주문 전년</th>
+          <th>거래비중</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-          <td>4,474만원</td><td class="down">-14.62%</td><td class="down">-20.24%</td>
-          <td>5,076</td><td class="down">-7.49%</td><td class="down">-0.57%</td>
+          <td>4,474만원</td>
+          <td class="down">-766만원<span class="fee-sub">-14.62%</span></td>
+          <td class="down">-1,135만원<span class="fee-sub">-20.24%</span></td>
+          <td>5,076건<span class="fee-sub">전월 <span class="down">-7.49%</span> · 전년 <span class="down">-0.57%</span></span></td>
+          <td>69.6%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-          <td>1,210만원</td><td class="down">-6.89%</td><td class="up">+6.58%</td>
-          <td>1,581</td><td class="up">+15.40%</td><td class="up">+19.23%</td>
+          <td>1,210만원</td>
+          <td class="down">-90만원<span class="fee-sub">-6.89%</span></td>
+          <td class="up">+75만원<span class="fee-sub">+6.58%</span></td>
+          <td>1,581건<span class="fee-sub">전월 <span class="up">+15.40%</span> · 전년 <span class="up">+19.23%</span></span></td>
+          <td>21.7%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-          <td>794만원</td><td class="down">-38.97%</td><td class="down">-5.49%</td>
-          <td>477</td><td class="down">-7.92%</td><td class="down">-8.62%</td>
-        </tr>
-        <tr>
-          <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-          <td>98만원</td><td class="up">+60.99%</td><td class="up">+17.89%</td>
-          <td>18</td><td class="down">-33.33%</td><td class="down">-30.77%</td>
+          <td>794만원</td>
+          <td class="down">-507만원<span class="fee-sub">-38.97%</span></td>
+          <td class="down">-46만원<span class="fee-sub">-5.49%</span></td>
+          <td>477건<span class="fee-sub">전월 <span class="down">-7.92%</span> · 전년 <span class="down">-8.62%</span></span></td>
+          <td>6.5%</td>
         </tr>
         <tr>
           <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-          <td>216만원</td><td class="down">-11.49%</td><td class="up">+18.74%</td>
-          <td>141</td><td class="up">+13.71%</td><td class="up">+24.78%</td>
+          <td>216만원</td>
+          <td class="down">-28만원<span class="fee-sub">-11.49%</span></td>
+          <td class="up">+34만원<span class="fee-sub">+18.74%</span></td>
+          <td>141건<span class="fee-sub">전월 <span class="up">+13.71%</span> · 전년 <span class="up">+24.78%</span></span></td>
+          <td>1.9%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
+          <td>98만원</td>
+          <td class="up">+37만원<span class="fee-sub">+60.99%</span></td>
+          <td class="up">+15만원<span class="fee-sub">+17.89%</span></td>
+          <td>18건<span class="fee-sub">전월 <span class="down">-33.33%</span> · 전년 <span class="down">-30.77%</span></span></td>
+          <td>0.2%</td>
         </tr>
         <tr>
           <td>합계</td>
-          <td>6,792만원</td><td class="down">-16.61%</td><td class="down" style="font-size : 18px;">-13.47%</td>
-          <td>7,293</td><td class="down">-3.10%</td><td class="up" style="font-size : 18px;">+2.83%</td>
+          <td>6,792만원</td>
+          <td class="down">-1,353만원<span class="fee-sub">-16.61%</span></td>
+          <td class="down">-1,057만원<span class="fee-sub">-13.47%</span></td>
+          <td>7,293건<span class="fee-sub">전월 <span class="down">-3.10%</span> · 전년 <span class="up">+2.83%</span></span></td>
+          <td>100%</td>
         </tr>
       </tbody>
     </table>
     </div>
   </div>
+  <p style="font-size:11px;color:var(--text-muted);margin:-16px 0 24px;">
+    * 채널은 거래비중(주문건수 비중) 순 · 거래비중은 전체 주문건수 대비 채널별 주문건수 비율 · 증감액은 표의 수수료와 증감률로 역산한 값(반올림)이라 채널 합과 합계가 1만원 내외 차이날 수 있음
+  </p>
 
   <!-- ── 물품가 테이블 ── -->
   <p class="section-label" style="margin-top:8px;">물품가(낙찰가/구매가) · 평균 물품가 채널별 상세</p>
   <div class="card" style="margin-bottom:8px;padding:14px 18px;">
     <div class="table-wrap">
-      <table class="data-table product-split-table">
+      <table class="data-table fee-table">
         <thead>
           <tr>
-            <th rowspan="2" style="vertical-align:middle;border-bottom:1.5px solid var(--border);">채널</th>
-            <th colspan="3" style="text-align:center;border-bottom:1px solid var(--border);padding-bottom:4px;color:var(--text-primary);font-size:11px;">물품가 총액</th>
-            <th colspan="3" style="text-align:center;border-bottom:1px solid var(--border);padding-bottom:4px;color:var(--text-primary);font-size:11px;">평균 물품가 (건당)</th>
-          </tr>
-          <tr>
-            <th>9월</th>
-            <th>전월대비</th>
+            <th>채널</th>
+            <th>9월 물품가 총액</th>
+            <th>전월 대비</th>
             <th>전년 9월 대비</th>
-            <th>9월</th>
-            <th>전월대비</th>
-            <th>전년 9월 대비</th>
+            <th>평균 물품가 (건당)</th>
+            <th>거래비중</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
-            <td>7억7,362만원</td><td class="down">-2.59%</td><td class="down">-10.67%</td>
-            <td>￥17,113</td><td class="up">+7.14%</td><td class="down">-1.20%</td>
-          </tr>
-          <tr>
-            <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
-            <td>1억9,116만원</td><td class="up">+5.62%</td><td class="up">+42.13%</td>
-            <td>￥13,577</td><td class="down">-6.91%</td><td class="up">+31.08%</td>
-          </tr>
-          <tr>
-            <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
-            <td>1억977만원</td><td class="down">-45.16%</td><td class="up">+6.45%</td>
-            <td>$158.46</td><td class="down">-40.25%</td><td class="up">+22.13%</td>
-          </tr>
-          <tr>
-            <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
-            <td>1,831만원</td><td class="up">+132.62%</td><td class="up">+55.14%</td>
-            <td>$728.20</td><td class="up">+281.48%</td><td class="up">+137.69%</td>
-          </tr>
-          <tr>
-            <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
-            <td>1,630만원</td><td class="down">-18.42%</td><td class="up">+20.32%</td>
-            <td>￡57.29</td><td class="down">-22.10%</td><td class="down">-5.60%</td>
-          </tr>
-          <tr>
-            <td>합계</td>
-            <td>11억915만원</td><td class="down">-7.81%</td><td class="down" style="font-size : 18px;">-1.75%</td>
-            <td>-</td><td>-</td><td>-</td>
-          </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-jpA)"></span>일본경매</td>
+          <td>7억7,362만원</td>
+          <td class="down">-2,057만원<span class="fee-sub">-2.59%</span></td>
+          <td class="down">-9,240만원<span class="fee-sub">-10.67%</span></td>
+          <td>￥17,113<span class="fee-sub">전월 <span class="up">+7.14%</span> · 전년 <span class="down">-1.20%</span></span></td>
+          <td>69.6%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-jpB)"></span>일본구매</td>
+          <td>1억9,116만원</td>
+          <td class="up">+1,017만원<span class="fee-sub">+5.62%</span></td>
+          <td class="up">+5,666만원<span class="fee-sub">+42.13%</span></td>
+          <td>￥13,577<span class="fee-sub">전월 <span class="down">-6.91%</span> · 전년 <span class="up">+31.08%</span></span></td>
+          <td>21.7%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-usA)"></span>미국경매</td>
+          <td>1억977만원</td>
+          <td class="down">-9,039만원<span class="fee-sub">-45.16%</span></td>
+          <td class="up">+665만원<span class="fee-sub">+6.45%</span></td>
+          <td>$158.46<span class="fee-sub">전월 <span class="down">-40.25%</span> · 전년 <span class="up">+22.13%</span></span></td>
+          <td>6.5%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-uk)"></span>영국경매</td>
+          <td>1,630만원</td>
+          <td class="down">-368만원<span class="fee-sub">-18.42%</span></td>
+          <td class="up">+275만원<span class="fee-sub">+20.32%</span></td>
+          <td>￡57.29<span class="fee-sub">전월 <span class="down">-22.10%</span> · 전년 <span class="down">-5.60%</span></span></td>
+          <td>1.9%</td>
+        </tr>
+        <tr>
+          <td><span class="ch-dot" style="background:var(--ch-usB)"></span>미국구매</td>
+          <td>1,831만원</td>
+          <td class="up">+1,044만원<span class="fee-sub">+132.62%</span></td>
+          <td class="up">+651만원<span class="fee-sub">+55.14%</span></td>
+          <td>$728.20<span class="fee-sub">전월 <span class="up">+281.48%</span> · 전년 <span class="up">+137.69%</span></span></td>
+          <td>0.2%</td>
+        </tr>
+        <tr>
+          <td>합계</td>
+          <td>11억915만원</td>
+          <td class="down">-9,396만원<span class="fee-sub">-7.81%</span></td>
+          <td class="down">-1,976만원<span class="fee-sub">-1.75%</span></td>
+          <td></td>
+          <td>100%</td>
+        </tr>
         </tbody>
       </table>
     </div>
   </div>
+
   <p style="font-size:11px;color:var(--text-muted);margin:0 0 24px;">
+    * 채널은 거래비중(주문건수 비중) 순 · 증감액은 표의 총액과 증감률로 역산한 값(반올림)<br>
     * 미국구매는 9월 18건 규모로, 소수 고액 건의 영향이 커 평균 물품가($728.20, 전월 $190.89) 변동폭 해석에 유의 필요
   </p>
 
