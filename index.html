@@ -395,6 +395,25 @@ window.addEventListener('DOMContentLoaded', function() {
   .ch-dot {
     width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
   }
+  /* ── 복귀유저 설문조사 ── */
+  .sv-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .sv-step { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+  .sv-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; min-height: 16px; }
+  .sv-arrow { position: absolute; right: -11px; top: 50%; transform: translateY(-50%); z-index: 1; width: 18px; height: 18px; line-height: 16px; text-align: center; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 14px; }
+  .sv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+  .sv-card { padding: 18px 20px; }
+  .sv-card-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+  .sv-card-note { font-size: 11px; font-weight: 500; color: var(--text-muted); margin-left: 6px; }
+  .sv-bar-row { display: grid; grid-template-columns: 150px 1fr auto; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 12.5px; }
+  .sv-bar-track { height: 10px; background: #EEF1F6; border-radius: 5px; overflow: hidden; }
+  .sv-bar-fill { height: 100%; background: var(--primary); border-radius: 5px; }
+  .sv-bar-val { font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+  .sv-etc-title { font-size: 11px; font-weight: 700; color: var(--text-muted); margin: 18px 0 6px; }
+  .sv-etc { margin: 0; padding-left: 16px; font-size: 13px; line-height: 1.8; }
+  .sv-voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .sv-voice { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 12px; padding: 14px 18px; }
+  .sv-voice-title { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
+  .sv-voice-body { font-size: 13px; line-height: 1.6; }
   /* ── WEEKLY STRIP ── */
   .weekly-strip {
     display: grid;
@@ -2643,61 +2662,99 @@ window.addEventListener('DOMContentLoaded', function() {
 
   </div>
 
-  <!-- ── 복귀유저 설문조사 ── -->
-  <p class="section-label">복귀유저 설문조사</p>
-  <div style="display:grid;grid-template-columns:3fr 7fr;gap:16px;margin-bottom:16px;min-width:0;align-items:stretch;">
+  <!-- ── 복귀유저 설문조사 결과 ── -->
+  <p class="section-label">복귀유저 설문조사 결과</p>
 
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+  <div class="sv-flow">
+      <div class="sv-step">
         <div class="kpi-label">복귀유저 대상</div>
-        <div class="kpi-value" style="font-size:26px;">1,700명</div>
-        <span class="kpi-badge badge-flat">메일 수신 동의 1,024명 · SMS 동의 1,530명</span>
+        <div class="kpi-value" style="font-size:24px;">1,700명</div>
+        <div class="sv-sub"></div><span class="sv-arrow">›</span>
       </div>
-      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+      <div class="sv-step">
+        <div class="kpi-label">메일 수신 동의</div>
+        <div class="kpi-value" style="font-size:24px;">1,024명</div>
+        <div class="sv-sub">SMS 동의 1,530명</div><span class="sv-arrow">›</span>
+      </div>
+      <div class="sv-step">
         <div class="kpi-label">복귀 이벤트 메일 오픈</div>
-        <div class="kpi-value" style="font-size:26px;">97건</div>
-        <span class="kpi-badge badge-down">오픈율 약 9.5% (수신 동의 1,024명 기준)</span>
+        <div class="kpi-value" style="font-size:24px;">97건</div>
+        <div class="sv-sub">오픈율 약 9.5%</div><span class="sv-arrow">›</span>
       </div>
-      <div class="kpi-card" style="flex:1;padding:20px 24px;">
+      <div class="sv-step">
         <div class="kpi-label">설문 응답</div>
-        <div class="kpi-value" style="font-size:26px;">32명</div>
-        <span class="kpi-badge badge-flat">복귀유저 전체 대비 약 1.9%</span>
+        <div class="kpi-value" style="font-size:24px;">32명</div>
+        <div class="sv-sub">복귀유저 대비 약 1.9%</div>
       </div>
-    </div>
+  </div>
 
-    <div class="card" style="display:flex;flex-direction:column;gap:14px;">
-      <div class="card-title"><span class="dot" style="background:#4A7FB5"></span>설문 결과 요약 (응답 32명)</div>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;min-width:0;">
-        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">이용 중단 주된 이유</div>
-          <div style="font-size:13px;line-height:1.9;">
-            <strong style="color:var(--primary);">1위</strong> 배송비/수수료 부담<br>
-            <strong style="color:var(--primary);">2위</strong> 해외 직구 물품 수요 감소<br>
-            <strong style="color:var(--primary);">3위</strong> 원하는 상품을 찾기 어려움
+  <div class="sv-cards">
+    <div class="card sv-card">
+      <div class="sv-card-title">마지막 이용 시기 <span class="sv-card-note">응답 32명</span></div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">6개월~1년</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:100%"></div></div>
+            <div class="sv-bar-val">14명 (44%)</div>
           </div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">개선 시 재이용 의향 항목</div>
-          <div style="font-size:13px;line-height:1.9;">
-            <strong style="color:var(--primary);">1위</strong> 배송비/수수료 인하<br>
-            <strong style="color:var(--primary);">2위</strong> 프로모션/혜택 확대<br>
-            <strong style="color:var(--primary);">그 외</strong><br> 검색 기능 개선 · 고객센터(CS) 응대 개선 · 사이트/앱 UX 개선
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">5년 이상</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:57%"></div></div>
+            <div class="sv-bar-val">8명 (25%)</div>
           </div>
-        </div>
-        <div style="border:1px solid var(--border);border-radius:10px;padding:14px 16px;">
-          <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:10px;">마지막 이용 시기</div>
-          <div style="font-size:26px;font-weight:700;line-height:1.2;">6개월~1년</div>
-          <div style="font-size:13px;margin-top:6px;">14명 (44%) · 가장 많음</div>
-        </div>
-      </div>
-
-      <div style="font-size:12px;line-height:1.8;">
-        <strong>기타 의견</strong> : 원하는 품목의 직구 제한, 회원 등급 리셋, 최저가 국제배송에 대한 안내 부족
-        <br><strong>비드바이 개선요청</strong> : 쿠폰 기한 연장 및 회원 혜택 확대와 수수료 인하 요청이 다수
-      </div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">2~5년</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:43%"></div></div>
+            <div class="sv-bar-val">6명 (19%)</div>
+          </div>
     </div>
+    <div class="card sv-card">
+      <div class="sv-card-title">이용 중단 주된 이유 <span class="sv-card-note">응답 32명</span></div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">배송비/수수료 부담</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:100%"></div></div>
+            <div class="sv-bar-val">16명 (31%)</div>
+          </div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">해외 직구 물품 수요 감소</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:62%"></div></div>
+            <div class="sv-bar-val">10명 (19%)</div>
+          </div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">원하는 상품을 찾기 어려움</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:44%"></div></div>
+            <div class="sv-bar-val">7명 (13%)</div>
+          </div>
+    </div>
+    <div class="card sv-card">
+      <div class="sv-card-title">개선 시 재이용 의향 항목 <span class="sv-card-note">응답 32명</span></div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">배송비/수수료 인하</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:100%"></div></div>
+            <div class="sv-bar-val">21명 (38%)</div>
+          </div>
+          <div class="sv-bar-row">
+            <div class="sv-bar-label">프로모션/혜택 확대</div>
+            <div class="sv-bar-track"><div class="sv-bar-fill" style="width:43%"></div></div>
+            <div class="sv-bar-val">9명 (16%)</div>
+          </div>
+      <div class="sv-etc-title">그 외 고객 의견</div>
+      <ul class="sv-etc">
+        <li>검색 기능 개선</li>
+        <li>고객센터(CS) 응대 개선</li>
+        <li>사이트/앱 UX 개선</li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="sv-voices">
+    <div class="sv-voice">
+      <div class="sv-voice-title">기타 의견</div>
+      <div class="sv-voice-body">원하는 품목의 직구 제한 · 회원 등급 리셋 · 최저가 국제배송에 대한 안내 부족</div>
+    </div>
+    <div class="sv-voice">
+      <div class="sv-voice-title">비드바이 개선요청 (서술형)</div>
+      <div class="sv-voice-body">쿠폰 기한 연장 및 회원 혜택 확대, 수수료 인하 요청이 다수</div>
+    </div>
   </div>
 
   <hr class="divider">
