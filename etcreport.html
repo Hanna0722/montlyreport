@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비드바이코리아 - 2026년 기타 보고서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; width: 100%; }
+  :root {
+    --primary: #E8385A;
+    --primary-light: #fdeef2;
+    --accent: #F5A623;
+    --accent-light: #fff8ed;
+    --bg: #F5F7FA;
+    --surface: #ffffff;
+    --border: #E0E4EB;
+    --text-primary: #1A1A2E;
+    --text-secondary: #666680;
+    --text-muted: #999BAA;
+    --up: #1D9E75;
+    --up-bg: #EAF7F2;
+    --down: #D85A30;
+    --down-bg: #FDEEE8;
+    --warn: #BA7517;
+    --warn-bg: #FEF6E7;
+    --ch-jpA: #4472C4;
+    --ch-jpB: #ED7D31;
+    --ch-usA: #FFC000;
+    --ch-usB: #70AD47;
+    --ch-uk: #C43D4B;
+  }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+    max-width: 100vw;
+    zoom: 1.1;
+  }
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--primary);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    width: 100%;
+    overflow: hidden;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+  }
+  .logo-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+  .logo-text span { color: var(--primary); }
+  .header-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: right;
+    line-height: 1.5;
+  }
+  .header-meta strong {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+  }
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    min-width: 0;
+  }
+  .kpi-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .kpi-value {
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+   align-items: center;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .kpi-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 20px;
+  }
+  .badge-up { background-color: var(--up-bg); color: var(--up); }
+  .badge-down { background-color: var(--down-bg); color: var(--down); }
+  .badge-flat { background-color: #F0F0F5; color: var(--text-secondary); }
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; min-width: 0; }
+  .grid-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; margin-bottom: 24px; min-width: 0; }
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 18px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-title .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    flex-shrink: 0;
+  }
+  /* ── CHART WRAPPERS ── */
+  .chart-wrap { position: relative; }
+  /* ── TABLE ── */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table thead tr {
+    border-bottom: 1.5px solid var(--border);
+  }
+  .data-table th {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 6px 10px 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .data-table th:first-child { text-align: center; }
+  .data-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-primary);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12.5px;
+  }
+  .data-table td:first-child {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .data-table tbody tr:last-child td { border-bottom: none; font-weight: 600; background: #F8F9FC; }
+  .data-table tbody tr:hover td { background: #FAFBFD; }
+  .data-table td.up {
+    color: var(--up);
+    font-weight: 700;
+  }
+  .data-table td.down {
+    color: var(--down);
+    font-weight: 700;
+  }
+  .channel-split-table th:nth-child(5),
+  .channel-split-table td:nth-child(5),
+  .product-split-table thead tr:first-child th:nth-child(3),
+  .product-split-table thead tr:nth-child(2) th:nth-child(4),
+  .product-split-table tbody td:nth-child(5) {
+    border-left: 1.5px solid var(--border);
+  }
+  .up { color: var(--up); font-weight: 700; }
+  .down { color: var(--down); font-weight: 700; }
+  .flat { color: var(--text-muted); }
+  .fee-table td:nth-child(n+2) { text-align: center; line-height: 1.4; white-space: nowrap; }
+  .fee-table td:nth-child(3),
+  .fee-table th:nth-child(3),
+  .fee-table td:nth-child(6),
+  .fee-table th:nth-child(6) { border-left: 1.5px solid var(--border); }
+  .fee-table tbody tr:last-child td { border-top: 1.5px solid var(--border); }
+  .fee-table td:first-child { display: table-cell; text-align: left; white-space: nowrap; }
+  .fee-table td:first-child .ch-dot { display: inline-block; margin-right: 7px; vertical-align: middle; }
+  .fee-sub { display: block; font-size: 11px; font-weight: 500; }
+  /* channel color dots in table */
+  .ch-dot {
+    width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
+  }
+  /* ── 복귀유저 설문조사 ── */
+  .sv-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .sv-step { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+  .sv-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; min-height: 16px; }
+  .sv-arrow { position: absolute; right: -11px; top: 50%; transform: translateY(-50%); z-index: 1; width: 18px; height: 18px; line-height: 16px; text-align: center; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 14px; }
+  .sv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 16px; }
+  .sv-card { padding: 18px 20px; }
+  .sv-card-title { font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+  .sv-card-note { font-size: 11px; font-weight: 500; color: var(--text-muted); margin-left: 6px; }
+  .sv-bar-row { display: grid; grid-template-columns: 150px 1fr auto; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 12.5px; }
+  .sv-bar-track { height: 10px; background: #EEF1F6; border-radius: 5px; overflow: hidden; }
+  .sv-bar-fill { height: 100%; background: var(--primary); border-radius: 5px; }
+  .sv-bar-val { font-size: 12px; color: var(--text-secondary); white-space: nowrap; }
+  .sv-voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .sv-voice { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 12px; padding: 14px 18px; }
+  .sv-voice-title { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
+  .sv-voice-body { font-size: 13px; line-height: 1.6; }
+  /* ── WEEKLY STRIP ── */
+  .weekly-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+    min-width: 0;
+  }
+  .wk-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .wk-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+  .wk-val {
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .wk-chg { font-size: 11px; font-weight: 600; }
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .insight-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: start;
+  }
+  .insight-grid-horizontal {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .insight-grid-merged {
+    grid-template-columns: 1fr !important;
+  }
+  .insight-column {
+    min-width: 0;
+  }
+  .insight-column .insight-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 0;
+  }
+  .insight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .insight-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .icon-up { background: var(--up-bg); }
+  .icon-down { background: var(--down-bg); }
+  .icon-warn { background: var(--warn-bg); }
+  .insight-content { flex: 1; }
+  .insight-title { font-size: 12.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .insight-body + .insight-title { margin-top: 14px; }
+  .insight-body { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+  @media (max-width: 760px) {
+    .insight-grid,
+    .insight-grid-horizontal {
+      grid-template-columns: 1fr;
+    }
+  }
+  /* ── LEGEND ── */
+  .legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .leg {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; color: var(--text-secondary);
+  }
+  .leg-dot {
+    width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+  }
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4px 0 24px; }
+  /* ── FOOTER ── */
+  .report-footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    margin-top: 8px;
+  }
+  /* ── MONTH TABS ── */
+  .month-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 4px 0 20px;
+  }
+  .month-tab-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background-color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .month-tab-btn:hover { background-color: #ffffff; color:#bbbbbb; }
+  .month-tab-btn.active {
+    background: #bbbbbb;
+    border-color: #bbbbbb;
+    color: #000000;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  /* ── DONUT LABEL ── */
+  .donut-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+  .donut-center {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center-val {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: block;
+  }
+  .donut-center-sub {
+    font-size: 10px;
+    color: var(--text-secondary);
+  }
+
+  /* ── etcreport ── */
+  .report-header { border-bottom-color: #bbbbbb; }
+  .etc-section { margin-bottom: 28px; }
+  .etc-empty {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 28px 18px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .etc-empty strong { display: block; color: var(--text-primary); font-size: 14px; margin-bottom: 4px; }
+  .etc-section .data-table tbody tr:last-child td { font-weight: 400; background: transparent; }
+  .etc-note { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
+  .etc-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 12px; }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="report-header">
+  <div class="header-logo">
+    <div>
+      <div class="logo-text">BIDBUY KOREA</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:1px;">비드바이코리아 내부 보고용</div>
+    </div>
+  </div>
+  <div class="header-meta" id="headerMeta">
+    <strong>2026년 10월 마케팅·GA·AI 활용 보고서</strong>
+    2026.10.01 ~ 2026.10.28(잠정) 기준
+  </div>
+</header>
+<div class="page">
+  <div class="month-tabs">
+    <button class="month-tab-btn" id="tabBtnOct" onclick="switchMonthTab('oct')">10월</button>
+  </div>
+  <div class="tab-content" id="tab-oct">
+  <!-- 마케팅 -->
+  <div class="etc-section">
+    <p class="etc-title">마케팅</p>
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>네이버 키워드 광고</div>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>키워드</th><th>노출수</th><th>클릭수</th><th>클릭률</th><th>평균 CPC</th><th>총비용</th></tr></thead><tbody><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table></div>
+      <p class="etc-note">※ 컬럼은 가안이며 값은 미입력(-) 상태입니다. 실제 데이터 확정 후 채웁니다.</p>
+    </div>
+  </div>
+
+  <!-- 구글 애널리틱스 -->
+  <div class="etc-section">
+    <p class="etc-title">구글 애널리틱스</p>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>상단 스토어별 클릭수</div>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>스토어</th><th>클릭수</th><th>비중</th></tr></thead><tbody><tr><td>일본</td><td>-</td><td>-</td></tr><tr><td>미국</td><td>-</td><td>-</td></tr><tr><td>영국</td><td>-</td><td>-</td></tr></tbody></table></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>메인페이지 유입 후 이동 경로</div>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>이동 페이지</th><th>이동 수</th><th>메인 유입 대비 비율</th></tr></thead><tbody><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr></tbody></table></div>
+      <p class="etc-note">※ 항목·값은 미입력(-) 상태입니다. 실제 데이터 확정 후 채웁니다.</p>
+    </div>
+  </div>
+
+  <!-- AI 활용 -->
+  <div class="etc-section">
+    <p class="etc-title">AI 활용 인사이트</p>
+    <div class="insight-grid insight-grid-merged" style="margin-bottom:0;">
+      <div class="insight-card">
+        <div class="insight-content">
+          <div class="insight-title">인사이트 작성 대기</div>
+          <div class="insight-body">AI 활용 인사이트 내용이 확정되면 이 영역에 텍스트로 작성합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /tab-oct -->
+</div><!-- /page -->
+<footer class="report-footer" id="reportFooter">
+  비드바이코리아 기획운영팀 내부 보고용 · 2026년 10월 28일 기준(잠정)
+</footer>
+<script>
+// ── TAB SWITCHING ── (월 탭을 추가할 때 아래 두 곳에 해당 월을 추가)
+function switchMonthTab(month) {
+  document.getElementById('tab-oct').classList.toggle('active', month === 'oct');
+  document.getElementById('tabBtnOct').classList.toggle('active', month === 'oct');
+  var meta = document.getElementById('headerMeta');
+  var foot = document.getElementById('reportFooter');
+  if (month === 'oct') {
+    meta.innerHTML = '<strong>2026년 10월 마케팅·GA·AI 활용 보고서</strong>2026.10.01 ~ 2026.10.28(잠정) 기준';
+    foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 10월 28일 기준(잠정)';
+  }
+}
+window.addEventListener('DOMContentLoaded', function() {
+  switchMonthTab('oct');
+});
+</script>
+</body>
+</html>
