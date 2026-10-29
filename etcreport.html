@@ -219,6 +219,8 @@
   }
   .data-table tbody tr:last-child td { border-bottom: none; font-weight: 600; background: #F8F9FC; }
   .data-table tbody tr:hover td { background: #FAFBFD; }
+  /* etcreport 표: 기존 월간보고서의 첫 칸 flex 스타일을 해제해 행 높이·구분선·정렬을 맞춤 */
+  .etc-section .data-table td:first-child { display: table-cell; text-align: center; font-weight: 500; }
   .data-table td.up {
     color: var(--up);
     font-weight: 700;
@@ -442,6 +444,14 @@
   .etc-fold-hint { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--text-muted); }
   .etc-fold-hint::before { content: '펼치기 ▾'; }
   .etc-fold[open] .etc-fold-hint::before { content: '접기 ▴'; }
+  .etc-sub { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--text-muted); }
+  .etc-period { margin-left: 8px; font-size: 12px; font-weight: 500; color: var(--text-muted); }
+  .etc-pct { font-size: 11px; color: var(--text-muted); }
+  .etc-total td { border-top: 1.5px solid var(--border); background: #F8F9FB; font-weight: 600; }
+  .etc-kpis { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .etc-kpis > div { flex: 1; min-width: 140px; border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; text-align: center; background: #fff; }
+  .etc-kpis span { display: block; font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+  .etc-kpis strong { font-family: 'Roboto', sans-serif; font-size: 18px; color: var(--text-primary); }
   .etc-note { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
   .etc-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 12px; }
 </style>
@@ -452,12 +462,10 @@
   <div class="header-logo">
     <div>
       <div class="logo-text">BIDBUY KOREA</div>
-      <div style="font-size:11px;color:var(--text-muted);margin-top:1px;">비드바이코리아 내부 보고용</div>
     </div>
   </div>
   <div class="header-meta" id="headerMeta">
-    <strong>2026년 10월 마케팅·GA·AI 활용 보고서</strong>
-    2026.10.01 ~ 2026.10.28(잠정) 기준
+    <strong>2026년 마케팅 보고서</strong>
   </div>
 </header>
 <div class="page">
@@ -471,23 +479,22 @@
     <div class="card" style="margin-bottom:16px;">
       <div class="card-title"><span class="dot" style="background:var(--accent)"></span>운영 구간 안내</div>
       <ul class="etc-list">
-        <li><strong>25.09 ~ 26.05 중순</strong> 기존 광고로 운영</li>
-        <li><strong>26.05 중순 ~</strong> 신규 광고로 전환 (5월은 기존·신규를 나눠 표시)</li>
-        <li><strong>26.06 ~</strong> 신규 기획팀 키워드와 예산으로 운영</li>
-        <li><strong>26.10</strong> 시트에 값이 아직 없어 집계 전으로 표시</li>
+        <li><strong>~ 26.05 초기</strong> 기존 광고로 운영</li>
+        <li><strong>26.05 ~</strong> 신규 광고로 전환</li>
+        <li><strong>26.10</strong>집계전</li>
       </ul>
     </div>
     <div class="card" style="margin-bottom:16px;">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 노출수</div>
-      <div class="chart-wrap" style="height:240px"><canvas id="adImpChart"></canvas></div>
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>1) 총비용<span class="etc-sub">막대: 월별 총비용(원)</span></div>
+      <div class="chart-wrap" style="height:260px"><canvas id="adCostChart"></canvas></div>
     </div>
     <div class="card" style="margin-bottom:16px;">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 CTR(%)</div>
-      <div class="chart-wrap" style="height:240px"><canvas id="adCtrChart"></canvas></div>
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>2) 노출수 · CTR<span class="etc-sub">막대: 노출수 / 선: CTR(%)</span></div>
+      <div class="chart-wrap" style="height:260px"><canvas id="adImpCtrChart"></canvas></div>
     </div>
     <div class="card" style="margin-bottom:16px;">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 평균 CPC(원)</div>
-      <div class="chart-wrap" style="height:240px"><canvas id="adCpcChart"></canvas></div>
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>3) 평균 CPC<span class="etc-sub">선: 평균 CPC(원)</span></div>
+      <div class="chart-wrap" style="height:260px"><canvas id="adCpcChart"></canvas></div>
     </div>
     <details class="card etc-fold">
       <summary class="card-title"><span class="dot" style="background:var(--accent)"></span>월별 합계 (미국·영국·일본)<span class="etc-fold-hint"></span></summary>
@@ -498,15 +505,21 @@
 
   <!-- 구글 애널리틱스 -->
   <div class="etc-section">
-    <p class="etc-title">구글 애널리틱스</p>
+    <p class="etc-title">구글 애널리틱스 <span class="etc-period">10/1~10/31 · 잠정 (월 마감 후 갱신 예정)</span></p>
     <div class="card" style="margin-bottom:16px;">
       <div class="card-title"><span class="dot" style="background:var(--accent)"></span>상단 스토어별 클릭수</div>
-      <div class="table-wrap"><table class="data-table"><thead><tr><th>스토어</th><th>클릭수</th><th>비중</th></tr></thead><tbody><tr><td>일본</td><td>-</td><td>-</td></tr><tr><td>미국</td><td>-</td><td>-</td></tr><tr><td>영국</td><td>-</td><td>-</td></tr></tbody></table></div>
+      <div class="table-wrap"><table class="data-table" style="table-layout:fixed;width:100%"><colgroup><col style="width:10%"><col style="width:22%"><col style="width:18%"><col style="width:17%"><col style="width:17%"><col style="width:16%"></colgroup><thead><tr><th>순위</th><th>스토어</th><th>합계(클릭수)</th><th>모바일 비율</th><th>PC 비율</th><th>태블릿 비율</th></tr></thead><tbody><tr><td>1</td><td>야후옥션</td><td>15,936</td><td>61.6%</td><td>35.7%</td><td>2.7%</td></tr><tr><td>2</td><td>메루카리</td><td>10,409</td><td>73.5%</td><td>24.9%</td><td>1.5%</td></tr><tr><td>3</td><td>라쿠텐</td><td>3,650</td><td>68.2%</td><td>29.6%</td><td>2.2%</td></tr><tr><td>4</td><td>미국이베이</td><td>3,357</td><td>50.3%</td><td>45.8%</td><td>3.9%</td></tr><tr><td>5</td><td>야후쇼핑</td><td>2,365</td><td>67.6%</td><td>30.1%</td><td>2.3%</td></tr><tr><td>6</td><td>야후프리마</td><td>1,938</td><td>59.7%</td><td>37.7%</td><td>2.6%</td></tr><tr><td>7</td><td>라쿠마</td><td>1,836</td><td>56.7%</td><td>41.0%</td><td>2.3%</td></tr><tr><td>8</td><td>영국이베이</td><td>1,702</td><td>54.5%</td><td>43.5%</td><td>1.9%</td></tr><tr class="etc-total"><td></td><td>총계</td><td>42,590</td><td>62.3%</td><td>35.3%</td><td>2.4%</td></tr></tbody></table></div>
+      <p class="etc-note">※ 출처: [비드바이]구글애널리틱스 분석 &gt; GA분석. 시트 상위 10개 행 기준이며, 띄어쓰기만 다른 '미국이베이/미국 이베이', '영국이베이/영국 이베이'는 각각 합산했습니다. 스토어 행의 합계(41,193)는 총계(42,590)보다 1,397건 적습니다(표에 없는 스토어 포함). 순위는 합계(클릭수) 기준이고, 비율은 각 스토어 클릭수 중 모바일·PC·태블릿이 차지하는 비중을 소수 첫째 자리까지 반올림한 값이라 합이 99.9%로 보이는 행(메루카리, 영국이베이)이 있습니다.</p>
     </div>
     <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>메인페이지 유입 후 이동 경로</div>
-      <div class="table-wrap"><table class="data-table"><thead><tr><th>이동 페이지</th><th>이동 수</th><th>메인 유입 대비 비율</th></tr></thead><tbody><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td></tr></tbody></table></div>
-      <p class="etc-note">※ 항목·값은 미입력(-) 상태입니다. 실제 데이터 확정 후 채웁니다.</p>
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>메인페이지 유입 후 이동 경로 (스토어별 상위 5개)</div>
+      <div class="etc-kpis">
+        <div><span>전체 세션수</span><strong>146,947</strong></div>
+        <div><span>스토어 유입수</span><strong>82,947</strong></div>
+        <div><span>스토어 유입 비중</span><strong>56.45%</strong></div>
+      </div>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>순위</th><th>스토어</th><th>스토어 유입수</th><th>스토어 유입수 대비</th></tr></thead><tbody><tr><td>1</td><td>야후</td><td>20,106</td><td>24.24%</td></tr><tr><td>2</td><td>이베이</td><td>2,713</td><td>3.27%</td></tr><tr><td>3</td><td>메루카리</td><td>1,285</td><td>1.55%</td></tr><tr><td>4</td><td>라쿠텐</td><td>311</td><td>0.37%</td></tr><tr><td>5</td><td>라쿠마</td><td>141</td><td>0.17%</td></tr></tbody></table></div>
+      <p class="etc-note">※ 출처: GA분석 &gt; main &gt; 상단 스토어 클릭 유입. 스토어별 유입수는 시트의 스토어별 합계이며, 비율은 유입수 ÷ 스토어 유입수(82,947)로 계산했습니다. 야후쇼핑·야후프리마 경로는 시트에서 야후로 분류되어 있고, 스토어가 비어 있는 경로(764건)는 포함하지 않았습니다.</p>
     </div>
   </div>
 
@@ -536,30 +549,25 @@ function switchMonthTab(month) {
   var meta = document.getElementById('headerMeta');
   var foot = document.getElementById('reportFooter');
   if (month === 'oct') {
-    meta.innerHTML = '<strong>2026년 10월 마케팅·GA·AI 활용 보고서</strong>2026.10.01 ~ 2026.10.28(잠정) 기준';
-    foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 10월 28일 기준(잠정)';
+    meta.innerHTML = '<strong>2026년 10월 마케팅 보고서</strong>';
+    foot.textContent = '비드바이코리아 기획운영팀 내부 보고용';
   }
 }
 
 // ── 네이버 키워드 광고 그래프 ──
 (function(){
-  var labels = ["25.09", "25.10", "25.11", "25.12", "26.01", "26.02", "26.03", "26.04", "26.05 기존", "26.05 신규", "26.06", "26.07", "26.08", "26.09", "26.10"];
-  var cost = [489808, 464299, 331848, 589072, 715539, 542201, 593433, 428959, 136509, 6148, 10715, 161874, 359038, 1411617, null];
-  var series = {
-    adImpChart: { data: [77872, 130641, 145188, 134059, 102296, 39007, 55820, 89077, 4248, 7117, 13108, 33636, 72066, 76357, null], name: '노출수', unit: '', fmt: function(v){ return v.toLocaleString(); } },
-    adCtrChart: { data: [0.69, 0.44, 0.28, 0.43, 1.03, 2.37, 0.93, 0.37, 1.91, 0.89, 0.77, 4.77, 3.53, 3.84, null], name: 'CTR', unit: '%', fmt: function(v){ return v.toFixed(2) + '%'; } },
-    adCpcChart: { data: [907, 813, 825, 1028, 682, 586, 1143, 1312, 1685, 98, 106, 101, 141, 482, null], name: '평균 CPC', unit: '원', fmt: function(v){ return v.toLocaleString() + '원'; } }
-  };
+  var titles = ["25.09", "25.10", "25.11", "25.12", "26.01", "26.02", "26.03", "26.04", "26.05 기존", "26.05 신규", "26.06", "26.07", "26.08", "26.09", "26.10"];
+  var labels = titles.map(function(t){ var m = t.match(/^(26\.05) (기존|신규)$/); return m ? [m[1], m[2]] : t; });
+  var cost = [489808, 464299, 331848, 589072, 715539, 542201, 593433, 428959, 136509, 6148, 10715, 161874, 359038, 1411617, null], imp = [77872, 130641, 145188, 134059, 102296, 39007, 55820, 89077, 4248, 7117, 13108, 33636, 72066, 76357, null], ctr = [0.69, 0.44, 0.28, 0.43, 1.03, 2.37, 0.93, 0.37, 1.91, 0.89, 0.77, 4.77, 3.53, 3.84, null], cpc = [907, 813, 825, 1028, 682, 586, 1143, 1312, 1685, 98, 106, 101, 141, 482, null];
+  var gridColor = 'rgba(0,0,0,0.05)', textColor = '#999BAA', lineColor = '#444466';
   // 5월 중순(기존→신규) / 6월(신규 기획팀 키워드·예산) 구분선
   var splitPlugin = {
     id: 'adSplit',
     afterDraw: function(chart) {
       var x = chart.scales.x, a = chart.chartArea, ctx = chart.ctx;
-      var marks = [[8.5, '5월 중순 신규광고'], [9.5, '6월~ 신규 기획팀 키워드·예산']];
+      var marks = [[8.5, '5월 중순 신규광고'], [9.5, '6월~ 신규 키워드 & 예산']];
       ctx.save();
-      ctx.setLineDash([4, 4]);
-      ctx.strokeStyle = '#999BAA';
-      ctx.fillStyle = '#666680';
+      ctx.setLineDash([4, 4]); ctx.strokeStyle = '#999BAA'; ctx.fillStyle = '#666680';
       ctx.font = '500 11px "Noto Sans KR", sans-serif';
       marks.forEach(function(m, i) {
         var px = x.getPixelForValue(m[0]);
@@ -570,48 +578,94 @@ function switchMonthTab(month) {
       ctx.restore();
     }
   };
-  var gridColor = 'rgba(0,0,0,0.05)', textColor = '#999BAA';
-  Object.keys(series).forEach(function(id) {
-    var s = series[id], el = document.getElementById(id);
-    if (!el) return;
-    new Chart(el, {
-      data: {
-        labels: labels,
-        datasets: [
-          { type: 'bar', label: '총비용', data: cost, yAxisID: 'y', backgroundColor: '#D5D8E0', borderRadius: 3, order: 2 },
-          { type: 'line', label: s.name, data: s.data, yAxisID: 'y1', borderColor: '#444466', backgroundColor: '#444466',
-            borderWidth: 2.5, pointRadius: 4, pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.25, spanGaps: false, order: 1 }
-        ]
-      },
-      plugins: [splitPlugin],
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        layout: { padding: { top: 24 } },
-        plugins: {
-          legend: { display: true, position: 'bottom', align: 'center', labels: { boxWidth: 12, font: { size: 11 }, color: '#666680' } },
-          tooltip: {
-            backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680', borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
-            callbacks: {
-              title: function(items) { return items[0].label === '26.10' ? '26.10 (집계 전)' : items[0].label; },
-              label: function(c) {
-                if (c.raw === null) return '  ' + c.dataset.label + ': 집계 전';
-                return '  ' + c.dataset.label + ': ' + (c.dataset.type === 'bar' ? c.raw.toLocaleString() + '원' : s.fmt(c.raw));
-              }
-            }
-          }
-        },
-        scales: {
-          x: { ticks: { color: textColor, font: { size: 11 }, maxRotation: 45, minRotation: 0 }, grid: { color: gridColor } },
-          y: { position: 'left', beginAtZero: true, title: { display: true, text: '총비용(원)', color: textColor, font: { size: 11 } },
-               ticks: { color: textColor, font: { size: 11 }, callback: function(v){ return v >= 10000 ? Math.round(v/10000).toLocaleString() + '만' : v.toLocaleString(); } },
-               grid: { color: gridColor } },
-          y1: { position: 'right', beginAtZero: true, title: { display: true, text: s.name + (s.unit ? '(' + s.unit + ')' : ''), color: textColor, font: { size: 11 } },
-                ticks: { color: textColor, font: { size: 11 }, callback: function(v){ return v.toLocaleString(); } },
-                grid: { drawOnChartArea: false } }
-        }
+  // 값 라벨 (dsIndex: 라벨을 달 데이터셋, fmt: 표기 함수, above: 위쪽 여백)
+  function valueLabels(dsIndex, fmt, color) {
+    return {
+      id: 'adValue' + dsIndex,
+      afterDatasetsDraw: function(chart) {
+        var ctx = chart.ctx, meta = chart.getDatasetMeta(dsIndex), ds = chart.data.datasets[dsIndex];
+        ctx.save();
+        ctx.font = '600 10px "Noto Sans KR", sans-serif';
+        ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+        meta.data.forEach(function(el, i) {
+          var v = ds.data[i];
+          if (v === null || v === undefined) return;
+          var t = fmt(v);
+          ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,0.9)'; ctx.lineJoin = 'round';
+          ctx.strokeText(t, el.x, el.y - 5);
+          ctx.fillText(t, el.x, el.y - 5);
+        });
+        ctx.restore();
       }
-    });
+    };
+  }
+  function won(v){ return v >= 10000 ? (v/10000).toFixed(v >= 1000000 ? 0 : 1).replace(/\.0$/, '') + '만' : v.toLocaleString(); }
+  function axisFont(){ return { color: textColor, font: { size: 11 } }; }
+  function baseOptions(extraScales, tipLabel) {
+    return {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      layout: { padding: { top: 24 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680', borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+          callbacks: {
+            title: function(items) { var t = titles[items[0].dataIndex]; return t === '26.10' ? '26.10 (집계 전)' : t; },
+            label: function(c) { return c.raw === null ? '  ' + c.dataset.label + ': 집계 전' : '  ' + c.dataset.label + ': ' + tipLabel(c); }
+          }
+        }
+      },
+      scales: Object.assign({ x: { ticks: { color: textColor, font: { size: 11 }, maxRotation: 0, minRotation: 0, autoSkip: false }, grid: { color: gridColor } } }, extraScales)
+    };
+  }
+  function yScale(title, pos, fmt, opts) {
+    return Object.assign({ position: pos, beginAtZero: true,
+      title: { display: true, text: title, color: textColor, font: { size: 11 } },
+      ticks: Object.assign(axisFont(), { callback: fmt }), grid: { color: gridColor } }, opts || {});
+  }
+  var barStyle = { backgroundColor: '#D5D8E0', borderRadius: 3 };
+
+  // 1) 총비용
+  var el1 = document.getElementById('adCostChart');
+  if (el1) new Chart(el1, {
+    type: 'bar',
+    data: { labels: labels, datasets: [ Object.assign({ label: '총비용', data: cost }, barStyle) ] },
+    plugins: [splitPlugin, valueLabels(0, function(v){ return won(v) + (v >= 10000 ? '' : '원'); }, '#666680')],
+    options: baseOptions({ y: yScale('총비용(원)', 'left', function(v){ return v >= 10000 ? Math.round(v/10000).toLocaleString() + '만' : v.toLocaleString(); }) },
+      function(c){ return c.raw.toLocaleString() + '원'; })
+  });
+
+  // 2) 노출수(막대) + CTR(선)
+  var el2 = document.getElementById('adImpCtrChart');
+  if (el2) new Chart(el2, {
+    data: { labels: labels, datasets: [
+      Object.assign({ type: 'bar', label: '노출수', data: imp, yAxisID: 'y', order: 2 }, barStyle),
+      { type: 'line', label: 'CTR', data: ctr, yAxisID: 'y1', order: 1, borderColor: lineColor, backgroundColor: lineColor,
+        borderWidth: 2.5, pointRadius: 4, pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.25, spanGaps: false }
+    ] },
+    plugins: [splitPlugin, valueLabels(1, function(v){ return v.toFixed(2) + '%'; }, lineColor)],
+    options: (function(){
+      var o = baseOptions({
+        y: yScale('노출수', 'left', function(v){ return v.toLocaleString(); }),
+        y1: yScale('CTR(%)', 'right', function(v){ return v + '%'; }, { grid: { drawOnChartArea: false }, suggestedMax: 6 })
+      }, function(c){ return c.dataset.type === 'bar' ? c.raw.toLocaleString() : c.raw.toFixed(2) + '%'; });
+      o.plugins.legend = { display: true, position: 'bottom', labels: { boxWidth: 12, font: { size: 11 }, color: '#666680' } };
+      return o;
+    })()
+  });
+
+  // 3) 평균 CPC
+  var el3 = document.getElementById('adCpcChart');
+  if (el3) new Chart(el3, {
+    type: 'line',
+    data: { labels: labels, datasets: [
+      { label: '평균 CPC', data: cpc, borderColor: lineColor, backgroundColor: lineColor, borderWidth: 2.5, pointRadius: 4,
+        pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.25, spanGaps: false }
+    ] },
+    plugins: [splitPlugin, valueLabels(0, function(v){ return v.toLocaleString() + '원'; }, lineColor)],
+    options: baseOptions({ y: yScale('평균 CPC(원)', 'left', function(v){ return v.toLocaleString(); }, { suggestedMax: 2000 }) },
+      function(c){ return c.raw.toLocaleString() + '원'; })
   });
 })();
 
