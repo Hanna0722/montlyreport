@@ -433,6 +433,15 @@
   }
   .etc-empty strong { display: block; color: var(--text-primary); font-size: 14px; margin-bottom: 4px; }
   .etc-section .data-table tbody tr:last-child td { font-weight: 400; background: transparent; }
+  .etc-list { margin: 0; padding-left: 18px; font-size: 13px; color: var(--text-secondary); line-height: 1.9; }
+  .etc-list strong { color: var(--text-primary); margin-right: 6px; }
+  .etc-pending { color: var(--text-muted); }
+  .etc-fold > summary { list-style: none; cursor: pointer; margin-bottom: 0; user-select: none; }
+  .etc-fold > summary::-webkit-details-marker { display: none; }
+  .etc-fold[open] > summary { margin-bottom: 0; }
+  .etc-fold-hint { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--text-muted); }
+  .etc-fold-hint::before { content: '펼치기 ▾'; }
+  .etc-fold[open] .etc-fold-hint::before { content: '접기 ▴'; }
   .etc-note { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
   .etc-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin: 0 0 12px; }
 </style>
@@ -458,12 +467,33 @@
   <div class="tab-content" id="tab-oct">
   <!-- 마케팅 -->
   <div class="etc-section">
-    <p class="etc-title">마케팅</p>
-    <div class="card">
-      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>네이버 키워드 광고</div>
-      <div class="table-wrap"><table class="data-table"><thead><tr><th>키워드</th><th>노출수</th><th>클릭수</th><th>클릭률</th><th>평균 CPC</th><th>총비용</th></tr></thead><tbody><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></tbody></table></div>
-      <p class="etc-note">※ 컬럼은 가안이며 값은 미입력(-) 상태입니다. 실제 데이터 확정 후 채웁니다.</p>
+    <p class="etc-title">마케팅 · 네이버 키워드 광고</p>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>운영 구간 안내</div>
+      <ul class="etc-list">
+        <li><strong>25.09 ~ 26.05 중순</strong> 기존 광고로 운영</li>
+        <li><strong>26.05 중순 ~</strong> 신규 광고로 전환 (5월은 기존·신규를 나눠 표시)</li>
+        <li><strong>26.06 ~</strong> 신규 기획팀 키워드와 예산으로 운영</li>
+        <li><strong>26.10</strong> 시트에 값이 아직 없어 집계 전으로 표시</li>
+      </ul>
     </div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 노출수</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="adImpChart"></canvas></div>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 CTR(%)</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="adCtrChart"></canvas></div>
+    </div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>총비용 대비 평균 CPC(원)</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="adCpcChart"></canvas></div>
+    </div>
+    <details class="card etc-fold">
+      <summary class="card-title"><span class="dot" style="background:var(--accent)"></span>월별 합계 (미국·영국·일본)<span class="etc-fold-hint"></span></summary>
+      <div class="table-wrap" style="margin-top:14px;"><table class="data-table"><thead><tr><th>기간</th><th>노출수</th><th>클릭수</th><th>CTR</th><th>평균 CPC</th><th>총비용</th><th>하루예산</th></tr></thead><tbody><tr><td>25.09</td><td>77,872</td><td>540</td><td>0.69%</td><td>907원</td><td>489,808원</td><td>₩25,000</td></tr><tr><td>25.10</td><td>130,641</td><td>571</td><td>0.44%</td><td>813원</td><td>464,299원</td><td>₩25,000</td></tr><tr><td>25.11</td><td>145,188</td><td>402</td><td>0.28%</td><td>825원</td><td>331,848원</td><td>₩25,000</td></tr><tr><td>25.12</td><td>134,059</td><td>573</td><td>0.43%</td><td>1,028원</td><td>589,072원</td><td>₩25,000</td></tr><tr><td>26.01</td><td>102,296</td><td>1,049</td><td>1.03%</td><td>682원</td><td>715,539원</td><td>₩25,000</td></tr><tr><td>26.02</td><td>39,007</td><td>925</td><td>2.37%</td><td>586원</td><td>542,201원</td><td>₩25,000</td></tr><tr><td>26.03</td><td>55,820</td><td>519</td><td>0.93%</td><td>1,143원</td><td>593,433원</td><td>₩25,000</td></tr><tr><td>26.04</td><td>89,077</td><td>327</td><td>0.37%</td><td>1,312원</td><td>428,959원</td><td>₩25,000</td></tr><tr><td>26.05 기존</td><td>4,248</td><td>81</td><td>1.91%</td><td>1,685원</td><td>136,509원</td><td>₩25,000</td></tr><tr><td>26.05 신규</td><td>7,117</td><td>63</td><td>0.89%</td><td>98원</td><td>6,148원</td><td>₩25,000</td></tr><tr><td>26.06</td><td>13,108</td><td>101</td><td>0.77%</td><td>106원</td><td>10,715원</td><td>₩10,000</td></tr><tr><td>26.07</td><td>33,636</td><td>1,605</td><td>4.77%</td><td>101원</td><td>161,874원</td><td>₩50,000</td></tr><tr><td>26.08</td><td>72,066</td><td>2,542</td><td>3.53%</td><td>141원</td><td>359,038원</td><td>₩50,000</td></tr><tr><td>26.09</td><td>76,357</td><td>2,929</td><td>3.84%</td><td>482원</td><td>1,411,617원</td><td>₩100,000</td></tr><tr><td>26.10</td><td colspan="5" class="etc-pending">집계 전 (시트 미입력)</td><td>₩70,000</td></tr></tbody></table></div>
+      <p class="etc-note">※ 출처: [bidbuy] 2026 키워드 광고 진행표 &gt; 키워드 진행 현황. 월별 합계는 미국·영국·일본 합이며 CTR=클릭수÷노출수, 평균 CPC=총비용÷클릭수. 하루예산: 기존 광고(25.09~26.05 기존) ₩25,000, 이후는 시트 기재값.</p>
+    </details>
   </div>
 
   <!-- 구글 애널리틱스 -->
@@ -510,6 +540,81 @@ function switchMonthTab(month) {
     foot.textContent = '비드바이코리아 기획운영팀 내부 보고용 · 2026년 10월 28일 기준(잠정)';
   }
 }
+
+// ── 네이버 키워드 광고 그래프 ──
+(function(){
+  var labels = ["25.09", "25.10", "25.11", "25.12", "26.01", "26.02", "26.03", "26.04", "26.05 기존", "26.05 신규", "26.06", "26.07", "26.08", "26.09", "26.10"];
+  var cost = [489808, 464299, 331848, 589072, 715539, 542201, 593433, 428959, 136509, 6148, 10715, 161874, 359038, 1411617, null];
+  var series = {
+    adImpChart: { data: [77872, 130641, 145188, 134059, 102296, 39007, 55820, 89077, 4248, 7117, 13108, 33636, 72066, 76357, null], name: '노출수', unit: '', fmt: function(v){ return v.toLocaleString(); } },
+    adCtrChart: { data: [0.69, 0.44, 0.28, 0.43, 1.03, 2.37, 0.93, 0.37, 1.91, 0.89, 0.77, 4.77, 3.53, 3.84, null], name: 'CTR', unit: '%', fmt: function(v){ return v.toFixed(2) + '%'; } },
+    adCpcChart: { data: [907, 813, 825, 1028, 682, 586, 1143, 1312, 1685, 98, 106, 101, 141, 482, null], name: '평균 CPC', unit: '원', fmt: function(v){ return v.toLocaleString() + '원'; } }
+  };
+  // 5월 중순(기존→신규) / 6월(신규 기획팀 키워드·예산) 구분선
+  var splitPlugin = {
+    id: 'adSplit',
+    afterDraw: function(chart) {
+      var x = chart.scales.x, a = chart.chartArea, ctx = chart.ctx;
+      var marks = [[8.5, '5월 중순 신규광고'], [9.5, '6월~ 신규 기획팀 키워드·예산']];
+      ctx.save();
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = '#999BAA';
+      ctx.fillStyle = '#666680';
+      ctx.font = '500 11px "Noto Sans KR", sans-serif';
+      marks.forEach(function(m, i) {
+        var px = x.getPixelForValue(m[0]);
+        ctx.beginPath(); ctx.moveTo(px, a.top); ctx.lineTo(px, a.bottom); ctx.stroke();
+        ctx.textAlign = i === 0 ? 'right' : 'left';
+        ctx.fillText(m[1], px + (i === 0 ? -6 : 6), a.top - 8);
+      });
+      ctx.restore();
+    }
+  };
+  var gridColor = 'rgba(0,0,0,0.05)', textColor = '#999BAA';
+  Object.keys(series).forEach(function(id) {
+    var s = series[id], el = document.getElementById(id);
+    if (!el) return;
+    new Chart(el, {
+      data: {
+        labels: labels,
+        datasets: [
+          { type: 'bar', label: '총비용', data: cost, yAxisID: 'y', backgroundColor: '#D5D8E0', borderRadius: 3, order: 2 },
+          { type: 'line', label: s.name, data: s.data, yAxisID: 'y1', borderColor: '#444466', backgroundColor: '#444466',
+            borderWidth: 2.5, pointRadius: 4, pointBorderColor: '#fff', pointBorderWidth: 2, tension: 0.25, spanGaps: false, order: 1 }
+        ]
+      },
+      plugins: [splitPlugin],
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        layout: { padding: { top: 24 } },
+        plugins: {
+          legend: { display: true, position: 'bottom', align: 'center', labels: { boxWidth: 12, font: { size: 11 }, color: '#666680' } },
+          tooltip: {
+            backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680', borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+            callbacks: {
+              title: function(items) { return items[0].label === '26.10' ? '26.10 (집계 전)' : items[0].label; },
+              label: function(c) {
+                if (c.raw === null) return '  ' + c.dataset.label + ': 집계 전';
+                return '  ' + c.dataset.label + ': ' + (c.dataset.type === 'bar' ? c.raw.toLocaleString() + '원' : s.fmt(c.raw));
+              }
+            }
+          }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 11 }, maxRotation: 45, minRotation: 0 }, grid: { color: gridColor } },
+          y: { position: 'left', beginAtZero: true, title: { display: true, text: '총비용(원)', color: textColor, font: { size: 11 } },
+               ticks: { color: textColor, font: { size: 11 }, callback: function(v){ return v >= 10000 ? Math.round(v/10000).toLocaleString() + '만' : v.toLocaleString(); } },
+               grid: { color: gridColor } },
+          y1: { position: 'right', beginAtZero: true, title: { display: true, text: s.name + (s.unit ? '(' + s.unit + ')' : ''), color: textColor, font: { size: 11 } },
+                ticks: { color: textColor, font: { size: 11 }, callback: function(v){ return v.toLocaleString(); } },
+                grid: { drawOnChartArea: false } }
+        }
+      }
+    });
+  });
+})();
+
 window.addEventListener('DOMContentLoaded', function() {
   switchMonthTab('oct');
 });
