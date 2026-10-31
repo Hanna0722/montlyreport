@@ -585,7 +585,7 @@ window.addEventListener('DOMContentLoaded', function() {
     <button class="month-tab-btn" id="tabBtnAug" onclick="switchMonthTab('aug')">8월</button>
     <button class="month-tab-btn" id="tabBtnSep" onclick="switchMonthTab('sep')">9월</button>
     <button class="month-tab-btn" id="tabBtnOct" onclick="switchMonthTab('oct')">10월</button>
-    <a href="etcreport.html" style="margin-left:auto;align-self:center;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 16px;white-space:nowrap;">마케팅 보고서 바로가기 →</a>
+    <a href="etcreport.html" style="margin-left:auto;align-self:center;font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 16px;white-space:nowrap;">마케팅 보고서 바로가기</a>
   </div>
   <div class="tab-content" id="tab-may">
   <!-- ── KPI ── -->
@@ -2921,6 +2921,18 @@ window.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 </div>
+<div class="card" style="margin-bottom:16px;">
+<div class="card-title"><span class="dot" style="background:var(--ch-jpB)"></span>일본구매 일별 건수 · 리뉴얼(9/14) 전후 비교 (8/1~10/29) · 일평균 44.0건 → 69.5건 (+58.0%)</div>
+<div class="legend-row"><span class="leg"><span class="leg-dot" style="background:rgba(153,155,170,0.55)"></span>리뉴얼 전 일별 건수</span><span class="leg"><span class="leg-dot" style="background:rgba(237,125,49,0.75)"></span>리뉴얼 후 일별 건수</span><span class="leg">점선 = 구간 일평균</span></div>
+<div class="chart-wrap" style="height:260px"><canvas id="jpBuyTrendChartOct"></canvas></div>
+<table style="width:100%;margin-top:18px;border-collapse:collapse;font-size:11px;text-align:center;"><thead><tr><th style="border:1px solid var(--border);padding:6px;font-weight:600;">구간</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">기간</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">일수</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">합계</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">일평균</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">중앙값</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">일 최고</th></tr></thead><tbody><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;">리뉴얼 전</td><td style="border:1px solid var(--border);padding:6px;">8/1 ~ 9/13</td><td style="border:1px solid var(--border);padding:6px;">44일</td><td style="border:1px solid var(--border);padding:6px;">1,934건</td><td style="border:1px solid var(--border);padding:6px;font-weight:600;">44.0건</td><td style="border:1px solid var(--border);padding:6px;">42.5건</td><td style="border:1px solid var(--border);padding:6px;">72건</td></tr><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;">리뉴얼 후</td><td style="border:1px solid var(--border);padding:6px;">9/14 ~ 10/29</td><td style="border:1px solid var(--border);padding:6px;">46일</td><td style="border:1px solid var(--border);padding:6px;">3,195건</td><td style="border:1px solid var(--border);padding:6px;font-weight:600;">69.5건</td><td style="border:1px solid var(--border);padding:6px;">63.0건</td><td style="border:1px solid var(--border);padding:6px;">117건</td></tr><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;" colspan="4">일평균 증감 (후 / 전)</td><td style="border:1px solid var(--border);padding:6px;font-weight:700;" class="up">+58.0%</td><td style="border:1px solid var(--border);padding:6px;" class="up">+25.5건</td><td style="border:1px solid var(--border);padding:6px;"></td></tr></tbody></table>
+<p style="font-size:11px;color:var(--text-muted);margin-top:10px;">※ 매출분석 시트 BJP(일본구매) 일별 건수 기준. 10/30은 집계 중, 10/31은 미입력이라 제외하며 월 마감 후 갱신 예정. 구간 일수가 달라(44일/46일) 합계 대신 일평균으로 비교.</p>
+</div>
+<div class="card" style="margin-bottom:16px;">
+<div class="card-title"><span class="dot" style="background:var(--accent)"></span>신규가입 · 다건거래 회원 리뉴얼(9/14) 전후 비교 · 신규가입 일평균 7.7명 → 16.3명 (+110.3%)</div>
+<table style="width:100%;margin-top:8px;border-collapse:collapse;font-size:11px;text-align:center;"><thead><tr><th style="border:1px solid var(--border);padding:6px;font-weight:600;">구간</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">기간</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">가입 집계일수</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">신규가입자</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">일평균</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">다건거래 회원 (가입월 거래 7건 이상)</th><th style="border:1px solid var(--border);padding:6px;font-weight:600;">신규가입자 대비</th></tr></thead><tbody><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;">리뉴얼 전</td><td style="border:1px solid var(--border);padding:6px;">8/1 ~ 9/13</td><td style="border:1px solid var(--border);padding:6px;">44일</td><td style="border:1px solid var(--border);padding:6px;">340명</td><td style="border:1px solid var(--border);padding:6px;font-weight:600;">7.7명</td><td style="border:1px solid var(--border);padding:6px;">9명</td><td style="border:1px solid var(--border);padding:6px;">2.6%</td></tr><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;">리뉴얼 후</td><td style="border:1px solid var(--border);padding:6px;">9/14 ~ 10/29</td><td style="border:1px solid var(--border);padding:6px;">44일 (9/15·9/16 제외)</td><td style="border:1px solid var(--border);padding:6px;">715명</td><td style="border:1px solid var(--border);padding:6px;font-weight:600;">16.3명</td><td style="border:1px solid var(--border);padding:6px;">12명</td><td style="border:1px solid var(--border);padding:6px;">1.7%</td></tr><tr><td style="border:1px solid var(--border);padding:6px;font-weight:600;" colspan="4">일평균 증감 (후 / 전)</td><td style="border:1px solid var(--border);padding:6px;font-weight:700;" class="up">+110.3%</td><td style="border:1px solid var(--border);padding:6px;" colspan="2">신규가입 일평균 +8.5명</td></tr></tbody></table>
+<p style="font-size:11px;color:var(--text-muted);margin-top:10px;">※ 매출분석 시트 JOIN26 가입회원수 기준(탈퇴 회원 포함), 가입일 기준 집계. 9/15·9/16은 서버 오류로 신규가입이 불가해 집계에서 제외하고 44일로 비교.<br/>※ 다건거래 회원 = 가입한 달에 거래 7건 이상 고객(프리미엄 등급 기준), 다건거래고객 시트의 가입일 기준. 수치는 10/29 기준이며 10월 마감 후 갱신 예정.</p>
+</div>
 <div class="grid-2">
 <div class="card">
 <div class="card-title"><span class="dot"></span>월별 수수료 총액 흐름 (1~10월)</div>
@@ -3204,7 +3216,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 
-<p class="section-label">국제배송 현황 (10월 · 배송사별 출고건수 / 고객 결제 국제운임)</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;min-width:0;"><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">총 출고건수</div><div class="kpi-value">3,997건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +7.04%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">고객 결제 국제운임</div><div class="kpi-value">1억3,288만원</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -0.17%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">건당 고객 결제운임</div><div class="kpi-value">₩33,245</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -6.74%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">미국·영국 운임 정산 수익</div><div class="kpi-value">1,036만원</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -8.22%</span></div></div></div><div class="card" style="margin-bottom:24px;padding:14px 18px"><div class="table-wrap"><table class="data-table fee-table"><thead><tr><th>배송사</th><th>10월 출고건수</th><th>10월 고객 결제금액</th><th>건당 결제금액</th><th>결제금액 비중</th></tr></thead><tbody><tr><td><span class="ch-dot"></span>EMS</td><td>400건<span class="fee-sub"><span class="up">+0.76%</span></span></td><td>888만원<span class="fee-sub"><span class="up">+2.39%</span></span></td><td>₩22,190</td><td>6.7%</td></tr><tr><td><span class="ch-dot"></span>비바(허브넷)</td><td>1,951건<span class="fee-sub"><span class="up">+14.50%</span></span></td><td>3,535만원<span class="fee-sub"><span class="up">+3.58%</span></span></td><td>₩18,118</td><td>26.6%</td></tr><tr><td><span class="ch-dot"></span>팬스타선편</td><td>1,232건<span class="fee-sub"><span class="up">+2.50%</span></span></td><td>6,890만원<span class="fee-sub"><span class="down">-2.24%</span></span></td><td>₩55,929</td><td>51.9%</td></tr><tr><td><span class="ch-dot"></span>범한(미국)</td><td>318건<span class="fee-sub"><span class="down">-10.67%</span></span></td><td>1,385만원<span class="fee-sub"><span class="down">-13.52%</span></span></td><td>₩43,569</td><td>10.4%</td></tr><tr><td><span class="ch-dot"></span>범한(영국)</td><td>96건<span class="fee-sub"><span class="up">+28.00%</span></span></td><td>590만원<span class="fee-sub"><span class="up">+54.84%</span></span></td><td>₩61,411</td><td>4.4%</td></tr><tr><td>합계</td><td>3,997건<span class="fee-sub"><span class="up">+7.04%</span></span></td><td>1억3,288만원<span class="fee-sub"><span class="down">-0.17%</span></span></td><td>₩33,245</td><td>100%</td></tr></tbody></table></div></div><p class="section-label">국가별 출고량 (10월 잠정 · 9월 대비 증감)</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;min-width:0;"><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">총 출고량</div><div class="kpi-value">3,997건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +263건 (+7.04%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">일본 출고량</div><div class="kpi-value">3,583건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +280건 (+8.48%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">미국 출고량</div><div class="kpi-value">318건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -38건 (-10.67%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">영국 출고량</div><div class="kpi-value">96건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +21건 (+28.00%)</span></div></div></div><div class="card" style="margin-bottom:24px;padding:14px 18px"><div class="table-wrap"><table class="data-table fee-table"><thead><tr><th>국가</th><th>9월 출고건수</th><th>10월 출고건수</th><th>증감</th><th>증감률</th><th>10월 구성비</th></tr></thead><tbody><tr><td><span class="ch-dot"></span>일본</td><td>3,303건</td><td>3,583건</td><td><span class="up">+280건</span></td><td><span class="up">+8.48%</span></td><td>89.6%</td></tr><tr><td><span class="ch-dot"></span>미국</td><td>356건</td><td>318건</td><td><span class="down">-38건</span></td><td><span class="down">-10.67%</span></td><td>8.0%</td></tr><tr><td><span class="ch-dot"></span>영국</td><td>75건</td><td>96건</td><td><span class="up">+21건</span></td><td><span class="up">+28.00%</span></td><td>2.4%</td></tr><tr><td>합계</td><td>3,734건</td><td>3,997건</td><td><span class="up">+263건</span></td><td><span class="up">+7.04%</span></td><td>100%</td></tr></tbody></table></div><p style="font-size:11px;color:var(--text-muted);margin-top:10px;">※ 국제운송료 시트(2026_shipping) 기준. 일본 = EMS·비바(허브넷/성원)·팬스타선편·국제선편, 미국 = 범한(미국), 영국 = 범한(영국). 10월은 10/28 갱신 기준 잠정치.</p></div><p class="section-label">복귀유저 이벤트 결과 (10월 잠정)</p><div class="sv-flow"><div class="sv-step"><div class="kpi-label">복귀유저 대상</div><div class="kpi-value" style="font-size:24px;">1,702명</div><div class="sv-sub"></div><span class="sv-arrow">›</span></div><div class="sv-step"><div class="kpi-label">복귀 완료 유저</div><div class="kpi-value" style="font-size:24px;">99명</div><div class="sv-sub">대상 대비 5.8%</div><span class="sv-arrow">›</span></div><div class="sv-step"><div class="kpi-label">복귀유저 총 거래건수</div><div class="kpi-value" style="font-size:24px;">326건</div><div class="sv-sub">복귀 1인당 평균 3.3건</div></div></div><p style="font-size:11px;color:var(--text-muted);margin:8px 0 24px;">※ 담당자 제공 집계값(구글시트 연동 대상 아님). 평균·비율은 위 값으로 산출.</p><hr class="divider"/>
+<p class="section-label">국제배송 현황 (10월 · 배송사별 출고건수 / 고객 결제 국제운임)</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;min-width:0;"><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">총 출고건수</div><div class="kpi-value">3,997건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +7.04%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">고객 결제 국제운임</div><div class="kpi-value">1억3,288만원</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -0.17%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">건당 고객 결제운임</div><div class="kpi-value">₩33,245</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -6.74%</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">미국·영국 운임 정산 수익</div><div class="kpi-value">1,036만원</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -8.22%</span></div></div></div><div class="card" style="margin-bottom:24px;padding:14px 18px"><div class="table-wrap"><table class="data-table fee-table"><thead><tr><th>배송사</th><th>10월 출고건수</th><th>10월 고객 결제금액</th><th>건당 결제금액</th><th>결제금액 비중</th></tr></thead><tbody><tr><td><span class="ch-dot"></span>EMS</td><td>400건<span class="fee-sub"><span class="up">+0.76%</span></span></td><td>888만원<span class="fee-sub"><span class="up">+2.39%</span></span></td><td>₩22,190</td><td>6.7%</td></tr><tr><td><span class="ch-dot"></span>비바(허브넷)</td><td>1,951건<span class="fee-sub"><span class="up">+14.50%</span></span></td><td>3,535만원<span class="fee-sub"><span class="up">+3.58%</span></span></td><td>₩18,118</td><td>26.6%</td></tr><tr><td><span class="ch-dot"></span>팬스타선편</td><td>1,232건<span class="fee-sub"><span class="up">+2.50%</span></span></td><td>6,890만원<span class="fee-sub"><span class="down">-2.24%</span></span></td><td>₩55,929</td><td>51.9%</td></tr><tr><td><span class="ch-dot"></span>범한(미국)</td><td>318건<span class="fee-sub"><span class="down">-10.67%</span></span></td><td>1,385만원<span class="fee-sub"><span class="down">-13.52%</span></span></td><td>₩43,569</td><td>10.4%</td></tr><tr><td><span class="ch-dot"></span>범한(영국)</td><td>96건<span class="fee-sub"><span class="up">+28.00%</span></span></td><td>590만원<span class="fee-sub"><span class="up">+54.84%</span></span></td><td>₩61,411</td><td>4.4%</td></tr><tr><td>합계</td><td>3,997건<span class="fee-sub"><span class="up">+7.04%</span></span></td><td>1억3,288만원<span class="fee-sub"><span class="down">-0.17%</span></span></td><td>₩33,245</td><td>100%</td></tr></tbody></table></div></div><p class="section-label">국가별 출고량 (10월 잠정 · 9월 대비 증감)</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;min-width:0;"><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">총 출고량</div><div class="kpi-value">3,997건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +263건 (+7.04%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">일본 출고량</div><div class="kpi-value">3,583건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +280건 (+8.48%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">미국 출고량</div><div class="kpi-value">318건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-down">9월대비 -38건 (-10.67%)</span></div></div><div class="kpi-card" style="background-color:#ffffff;"><div class="kpi-label">영국 출고량</div><div class="kpi-value">96건</div><div style="display:flex;flex-direction:column;gap:4px;"><span class="kpi-badge badge-up">9월대비 +21건 (+28.00%)</span></div></div></div><div class="card" style="margin-bottom:24px;padding:14px 18px"><div class="table-wrap"><table class="data-table fee-table"><thead><tr><th>국가</th><th>9월 출고건수</th><th>10월 출고건수</th><th>증감</th><th>증감률</th><th>10월 구성비</th></tr></thead><tbody><tr><td><span class="ch-dot"></span>일본</td><td>3,303건</td><td>3,583건</td><td><span class="up">+280건</span></td><td><span class="up">+8.48%</span></td><td>89.6%</td></tr><tr><td><span class="ch-dot"></span>미국</td><td>356건</td><td>318건</td><td><span class="down">-38건</span></td><td><span class="down">-10.67%</span></td><td>8.0%</td></tr><tr><td><span class="ch-dot"></span>영국</td><td>75건</td><td>96건</td><td><span class="up">+21건</span></td><td><span class="up">+28.00%</span></td><td>2.4%</td></tr><tr><td>합계</td><td>3,734건</td><td>3,997건</td><td><span class="up">+263건</span></td><td><span class="up">+7.04%</span></td><td>100%</td></tr></tbody></table></div><p style="font-size:11px;color:var(--text-muted);margin-top:10px;">※ 국제운송료 시트(2026_shipping) 기준. 일본 = EMS·비바(허브넷/성원)·팬스타선편·국제선편, 미국 = 범한(미국), 영국 = 범한(영국). 10월은 10/28 갱신 기준 잠정치.</p></div><hr class="divider"/>
 <!-- ── INSIGHTS ── -->
 <p class="section-label">주요 인사이트</p>
 <div class="insight-stack">
@@ -3219,8 +3231,8 @@ window.addEventListener('DOMContentLoaded', function() {
 <div class="insight-card" style="border-left:3px solid var(--up);">
 <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
 <div class="insight-content">
-<div class="insight-title">일본구매 2,048건, 올해 최고 (전월 +29.54%)</div>
-<div class="insight-body">1,581건 → 2,048건(+29.54%), 작년 10월 대비 +53.06%.<br/>구매가 총액은 1.91억 → 2.55억원(+33.59%)으로 늘었고, 수수료 수입은 1,210만원 → 1,274만원(+5.27%).</div>
+<div class="insight-title">리뉴얼(9/14) 이후 일본구매 일평균 69.5건, 이전 44.0건 대비 +58.0%</div>
+<div class="insight-body">8/1~9/13(44일) 1,934건, 일평균 44.0건 → 9/14~10/29(46일) 3,195건, 일평균 69.5건. 리뉴얼 후 일 최저 38건, 최고 117건(리뉴얼 전 최저 23건, 최고 72건).<br/>※ 매출분석 시트 일별 건수 기준, 10/30(집계 중)·10/31(미입력) 제외. 월 마감 후 갱신 예정.</div>
 </div>
 </div><div class="insight-card" style="border-left:3px solid var(--up);">
 <div class="insight-icon icon-up" style="color:var(--up);">↑</div>
@@ -4488,6 +4500,71 @@ function initOctCharts() {
         scales: {
           x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
           y: { ticks: { color: textColor, font: { size: 10 }, callback: v => v.toLocaleString() + '만' }, grid: { color: gridColor } }
+        }
+      }
+    });
+  }
+
+  // 일본구매 일별 건수: 리뉴얼(9/14) 전후 비교 (8/1~10/29)
+  var jpBuyCanvasOct = document.getElementById('jpBuyTrendChartOct');
+  if (jpBuyCanvasOct) {
+    var jbAug = [61,61,72,66,38,49,30,24,33,62,33,45,37,48,41,28,54,42,50,43,38,34,34,46,60,48,39,53,28,23,50];
+    var jbSep = [65,54,68,40,41,33,43,47,46,37,27,29,34,38,52,51,51,104,56,49,60,39,53,53,50,42,39,97,67,116];
+    var jbOct = [113,103,52,75,55,74,90,77,63,60,48,94,117,86,76,63,61,52,97,73,62,90,66,54,48,104,69,73,83];
+    var jbDaily = jbAug.concat(jbSep, jbOct);
+    var jbLabels = [];
+    jbAug.forEach(function(v, i) { jbLabels.push('8/' + (i + 1)); });
+    jbSep.forEach(function(v, i) { jbLabels.push('9/' + (i + 1)); });
+    jbOct.forEach(function(v, i) { jbLabels.push('10/' + (i + 1)); });
+    var jbSplit = jbAug.length + 13; // 9/13까지 44일(리뉴얼 전)
+    var jbPreAvg = 44.0, jbPostAvg = 69.5;
+    var jbPreLine = jbDaily.map(function(v, i) { return i < jbSplit ? jbPreAvg : null; });
+    var jbPostLine = jbDaily.map(function(v, i) { return i >= jbSplit ? jbPostAvg : null; });
+    var jbBarColors = jbDaily.map(function(v, i) { return i < jbSplit ? 'rgba(153,155,170,0.55)' : 'rgba(237,125,49,0.75)'; });
+    var jbRenewalPlugin = {
+      id: 'jbRenewal',
+      afterDatasetsDraw: function(chart) {
+        var c = chart.ctx, xs = chart.scales.x, ys = chart.scales.y, a = chart.chartArea;
+        var x = (xs.getPixelForValue(jbSplit - 1) + xs.getPixelForValue(jbSplit)) / 2;
+        c.save();
+        c.strokeStyle = '#444466'; c.lineWidth = 1.2; c.setLineDash([5, 4]);
+        c.beginPath(); c.moveTo(x, a.top); c.lineTo(x, a.bottom); c.stroke(); c.setLineDash([]);
+        c.font = '600 11px sans-serif'; c.fillStyle = '#444466'; c.textAlign = 'center'; c.textBaseline = 'bottom';
+        c.fillText('9/14 리뉴얼', x, a.top - 6);
+        // 구간 평균 라벨
+        c.font = '700 11px sans-serif'; c.textBaseline = 'bottom';
+        c.fillStyle = '#666680'; c.textAlign = 'left';
+        c.lineWidth = 3; c.strokeStyle = '#fff'; c.strokeText('리뉴얼 전 일평균 44.0건', a.left + 6, ys.getPixelForValue(jbPreAvg) - 6); c.fillText('리뉴얼 전 일평균 44.0건', a.left + 6, ys.getPixelForValue(jbPreAvg) - 6);
+        c.fillStyle = '#C8601A'; c.textAlign = 'right';
+        c.strokeText('리뉴얼 후 일평균 69.5건', a.right - 6, ys.getPixelForValue(jbPostAvg) - 6); c.fillText('리뉴얼 후 일평균 69.5건', a.right - 6, ys.getPixelForValue(jbPostAvg) - 6);
+        c.restore();
+      }
+    };
+    new Chart(jpBuyCanvasOct, {
+      data: {
+        labels: jbLabels,
+        datasets: [
+          { type: 'bar', label: '일본구매 일별 건수', data: jbDaily, backgroundColor: jbBarColors, borderWidth: 0, barPercentage: 0.85, categoryPercentage: 0.9, order: 3 },
+          { type: 'line', label: '리뉴얼 전 일평균', data: jbPreLine, borderColor: '#444466', borderWidth: 2.5, borderDash: [6, 4], pointRadius: 0, order: 1 },
+          { type: 'line', label: '리뉴얼 후 일평균', data: jbPostLine, borderColor: '#C8601A', borderWidth: 2.5, borderDash: [6, 4], pointRadius: 0, order: 2 }
+        ]
+      },
+      plugins: [jbRenewalPlugin],
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 24 } },
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: { backgroundColor: '#fff', titleColor: '#1A1A2E', bodyColor: '#666680', borderColor: '#E0E4EB', borderWidth: 1, padding: 10,
+            filter: function(i) { return i.datasetIndex === 0; },
+            callbacks: { label: function(ctx) { return '  일본구매: ' + ctx.raw.toLocaleString() + '건'; } } }
+        },
+        scales: {
+          x: { ticks: { color: textColor, font: { size: 10 }, autoSkip: false, maxRotation: 0,
+                 callback: function(val) { var l = this.getLabelForValue(val); var d = +l.split('/')[1]; return (d === 1 || d === 15) ? l : ''; } },
+               grid: { display: false } },
+          y: { beginAtZero: true, suggestedMax: 130, ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor } }
         }
       }
     });
